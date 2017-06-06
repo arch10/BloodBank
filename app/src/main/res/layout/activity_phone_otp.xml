@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gigaworks.bloodbankbeta.PhoneOtp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/tv_enterMob"
+        android:layout_height="wrap_content"
+        android:text="Enter Mobile Number"
+        android:textSize="22dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="148dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+91"
+        android:textSize="22dp"
+        android:padding="8dp"
+        android:layout_below="@+id/tv_enterMob"
+        android:layout_alignStart="@+id/tv_enterMob"
+        android:id="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/et_mobno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/tv_enterMob"
+        android:layout_below="@id/tv_enterMob"
+        android:layout_toEndOf="@+id/textView2"
+        android:hint="mobile number"
+        android:inputType="phone"
+        android:maxLength="10" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_sendOtp"
+        android:text="Send Otp"
+        android:paddingStart="48dp"
+        android:paddingEnd="48dp"
+        android:textColor="#FFFFFF"
+        android:background="@color/colorPrimary"
+        android:layout_below="@id/et_mobno"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"/>
+
+</RelativeLayout>

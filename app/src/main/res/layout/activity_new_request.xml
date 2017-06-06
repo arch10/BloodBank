@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    android:orientation="vertical"
+    tools:context="com.gigaworks.bloodbankbeta.NewRequest">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:layout_margin="16dp"
+    android:orientation="vertical">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:id="@+id/et_req_name"
+        android:hint="Patient Name"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:id="@+id/et_req_phone"
+        android:hint="Phone Number"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_req_age"
+        android:layout_margin="8dp"
+        android:hint="Age"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_req_hospital"
+        android:layout_margin="8dp"
+        android:hint="Hospital Name"/>
+    <Spinner
+        android:id="@+id/sp_req_for"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:dropDownWidth="match_parent"
+        android:entries="@array/requirement"
+        android:padding="8dp"/>
+    <Spinner
+        android:id="@+id/sp_req_bloodgroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:dropDownWidth="match_parent"
+        android:padding="8dp"
+        android:entries="@array/bloodgroup"/>
+
+</LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Request"
+        android:id="@+id/btn_request_blood"/>
+</LinearLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Home"
+            android:checked="true"/>
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="My Profile" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_history_black_24dp"
+            android:title="History" />
+        <item
+            android:id="@+id/nav_accepted_record"
+            android:icon="@drawable/ic_done_black_24dp"
+            android:title="Accepted Requests"/>
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_people_black_24dp"
+            android:title="About" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share app" />
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/ic_perm_phone_msg_black_24dp"
+                android:title="Contact Developers" />
+        </menu>
+    </item>
+
+</menu>
