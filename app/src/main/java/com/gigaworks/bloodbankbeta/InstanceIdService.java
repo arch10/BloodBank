@@ -12,11 +12,9 @@ import com.google.firebase.iid.FirebaseInstanceIdService;
 
 public class InstanceIdService extends FirebaseInstanceIdService {
 
-    final static String TAG="Archit";
     @Override
     public void onTokenRefresh() {
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        Log.d(TAG, "Refreshed token: " + refreshedToken);
 
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("bloodbank.pref",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

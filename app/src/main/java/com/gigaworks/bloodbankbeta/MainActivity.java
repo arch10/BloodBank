@@ -1,16 +1,21 @@
 package com.gigaworks.bloodbankbeta;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -42,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private Button signin;
     private Button signup;
     private ProgressDialog progressDialog;
-    private int retries=0;
+    private TextInputLayout emailWrapper,passwordWrapper;
 
 
 
@@ -55,9 +60,12 @@ public class MainActivity extends AppCompatActivity {
         etPass = (EditText)findViewById(R.id.et_password);
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Signing In");
-        progressDialog.setMessage("Loading...");
+        progressDialog.setMessage("Please wait...");
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
+
+        emailWrapper=(TextInputLayout)findViewById(R.id.emailWrapper);
+        passwordWrapper=(TextInputLayout)findViewById(R.id.passwordWrapper);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -65,21 +73,11 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getDisplayName());
-
-                    retries=0;
                     sendToken(user.getEmail());
-                    //Sign user in
                     Toast.makeText(MainActivity.this,"Success, Redirecting",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(MainActivity.this,HomeActivity.class);
-                    //progressBar.setVisibility(View.GONE);
-                    progressDialog.cancel();
                     startActivity(i);
                     finish();
-                }
-                else {
-                    Toast.makeText(MainActivity.this,"Not signed in",Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -90,12 +88,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email=etUser.getText().toString().trim();
                 String password=etPass.getText().toString().trim();
-                if(email.equals("")||password.equals("")){
-                    Toast.makeText(MainActivity.this,"Please Enter email and password",Toast.LENGTH_SHORT);
-                }
-                else {
+                if(isValidLogin()){
+                    hideKeyboard();
                     signInUser(email, password);
-                    progressDialog.show();
                 }
             }
         });
@@ -104,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"SignUp Clicked",Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(MainActivity.this,PhoneOtp.class);
                 startActivity(i);
             }
@@ -119,6 +113,57 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+    }
+
+    private boolean isValidLogin(){
+        if(!validateEmail())
+            return false;
+        if(!validatePassword())
+            return false;
+        return true;
+    }
+
+    private boolean validatePassword() {
+        String password = etPass.getText().toString().trim();
+
+        if(password.isEmpty() || !isValidPassword(password)){
+            passwordWrapper.setError("Password must be at least 6 characters");
+            requestFocus(etPass);
+            return false;
+        }
+        else {
+            passwordWrapper.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private boolean isValidPassword(String password) {
+        return password.length()>=6;
+    }
+
+    private static boolean isValidEmail(String email) {
+        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    private boolean validateEmail() {
+        String email = etUser.getText().toString().trim();
+
+        if (email.isEmpty() || !isValidEmail(email)) {
+            emailWrapper.setError("Please enter a valid email id");
+            requestFocus(etUser);
+            return false;
+        } else {
+            emailWrapper.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
     @Override
     public void onBackPressed() {
         finish();
@@ -126,31 +171,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void signInUser(String email, String password){
+        progressDialog.show();
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
 
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithEmail:failed", task.getException());
                             progressDialog.cancel();
-                            Toast.makeText(MainActivity.this, "Sign In Failed",
+                            Toast.makeText(MainActivity.this, task.getException().toString(),
                                     Toast.LENGTH_SHORT).show();
                         }
-                        else {
-                            Toast.makeText(MainActivity.this,"Success...",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-
                     }
                 });
     }
 
     void sendToken(final String email){
+
         SharedPreferences sharedPreferences=getApplicationContext().getSharedPreferences("bloodbank.pref",MODE_PRIVATE);
         final String userToken = sharedPreferences.getString("token","");
 
@@ -158,10 +196,8 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if(response.equalsIgnoreCase("failed")&&retries<=2){
+                        if(response.equalsIgnoreCase("failed")){
                             Toast.makeText(MainActivity.this,"Token not sent",Toast.LENGTH_SHORT).show();
-                            retries++;
-                            sendToken(email);
                         }
                         if(response.equalsIgnoreCase("success")){
                             Toast.makeText(MainActivity.this,"Token sent",Toast.LENGTH_SHORT).show();
@@ -199,6 +235,14 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+    private void hideKeyboard() {
+        View view = getCurrentFocus();
+        if (view != null) {
+            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).
+                    hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
 

@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.gigaworks.bloodbankbeta.MainActivity">
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="centerInside"
-        android:src="@drawable/postel"
+        android:scaleType="centerCrop"
+        android:src="@drawable/poster"
         android:layout_above="@+id/ll_credentials"
         android:layout_alignParentStart="true" />
 <LinearLayout
@@ -20,25 +21,30 @@
     android:layout_margin="16dp"
     android:orientation="vertical">
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/emailWrapper"
+        android:layout_marginTop="16dp">
     <EditText
         android:id="@+id/et_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="username" />
+        android:hint="Username" />
+    </android.support.design.widget.TextInputLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
-
+        android:id="@+id/passwordWrapper"
+        android:layout_marginTop="16dp">
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:hint="password" />
+        android:hint="Password" />
+    </android.support.design.widget.TextInputLayout>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,6 +52,8 @@
         android:fontFamily="sans-serif-black"
         android:background="@color/colorPrimary"
         android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="18sp"
         android:id="@+id/btn_login"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"/>
@@ -53,6 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sign Up"
+        android:textSize="18sp"
         android:fontFamily="sans-serif-black"
         android:background="@color/colorPrimary"
         android:textColor="#FFFFFF"

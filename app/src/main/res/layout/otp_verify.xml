@@ -11,7 +11,9 @@
         android:layout_height="wrap_content"
         android:text="Enter the OTP recieved"
         android:textSize="22dp"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
 
     <EditText
         android:id="@+id/et_otp"
@@ -19,12 +21,16 @@
         android:layout_height="wrap_content"
         android:hint="OTP"
         android:inputType="number"
-        android:maxLength="4" />
+        android:maxLength="4"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_confirmOtp"
         android:text="Confirm"
+        android:textStyle="bold"
+        android:textSize="18sp"
         android:background="@color/colorPrimary"
         android:textColor="#ffffff"/>
 

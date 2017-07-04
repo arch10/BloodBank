@@ -38,6 +38,7 @@ import com.gigaworks.bloodbankbeta.Fragments.History;
 import com.gigaworks.bloodbankbeta.Fragments.Home;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,7 +54,6 @@ public class HomeActivity extends AppCompatActivity
     private String emailAddress;
     private static final String ResponseURL="https://gigaworks.000webhostapp.com/getUser.php";
     private static final String LOGIN_STATUS_URL="https://gigaworks.000webhostapp.com/change_status.php";
-    private static final String GET_IMAGE_URL="https://gigaworks.000webhostapp.com/downloadImage.php";
     private boolean doubleBackToExitPressedOnce=false;
     private CoordinatorLayout coordinatorLayout;
     private NavigationView navigationView;
@@ -69,8 +69,7 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Fragment f=new Contact();
-        View v=f.getView();
+
         navigationView=(NavigationView)findViewById(R.id.nav_view);
         header=navigationView.getHeaderView(0);
         hName=(TextView) header.findViewById(R.id.header_name);
@@ -84,8 +83,6 @@ public class HomeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
                 Intent i=new Intent(HomeActivity.this,NewRequest.class);
                 startActivity(i);
             }
@@ -114,7 +111,7 @@ public class HomeActivity extends AppCompatActivity
                 else {
                     emailAddress=user.getEmail();
                     hEmail.setText(emailAddress);
-                    GetUserData data=new GetUserData(emailAddress,ResponseURL,GET_IMAGE_URL,HomeActivity.this);
+                    GetUserData data=new GetUserData(emailAddress,ResponseURL,HomeActivity.this);
                             data.GetJsonResponse(
                             new MapCallback() {
                                 @Override
@@ -127,15 +124,17 @@ public class HomeActivity extends AppCompatActivity
                                     editor.putString("place",info.get(2));
                                     editor.putString("email",emailAddress);
                                     editor.putString("bloodgroup",info.get(3));
+                                    editor.putString("dob",info.get(4));
+                                    editor.putString("weight",info.get(5));
+                                    editor.putString("height",info.get(6));
+                                    editor.putString("lastdonated",info.get(7));
+                                    editor.putString("url",info.get(8));
                                     editor.commit();
                                     hName.setText(info.get(0));
 
-                                    //Fragment transaction for Home Fragment
-                                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                                    Fragment fragment=new Home();
-                                    fragmentTransaction.replace(R.id.fl_container,fragment);
-                                    fragmentTransaction.commit();
+                                        setProfileImage(info.get(8));
                                 }
+
                                 @Override
                                 public void onFail(String message) {
 
@@ -143,27 +142,9 @@ public class HomeActivity extends AppCompatActivity
                             }
                     );
 
-                    data.getImageUrl(new MapCallback() {
-                        @Override
-                        public void onSuccess(ArrayList<String> info) {
-                            SharedPreferences sharedPreferences = getApplicationContext()
-                                    .getSharedPreferences("bloodbank.pref",MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("url",info.get(0));
-                            editor.commit();
-
-                            new DownloadImageTask(profilePic).execute(info.get(0));
-                        }
-
-                        @Override
-                        public void onFail(String message) {
-
-                        }
-                    });
                 }
             }
         };
-
     }
 
 
@@ -195,7 +176,6 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
@@ -203,8 +183,6 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_signout) {
             FirebaseAuth.getInstance().signOut();
             changeUserStatus();
@@ -268,6 +246,14 @@ public class HomeActivity extends AppCompatActivity
         super.onResume();
         mAuth.addAuthStateListener(mAuthListener);
 
+        navigationView.setCheckedItem(R.id.nav_home);
+
+        //Fragment transaction for Home Fragment
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        Fragment fragment=new Home();
+        fragmentTransaction.replace(R.id.fl_container,fragment);
+        fragmentTransaction.commit();
+
     }
 
 
@@ -311,5 +297,20 @@ public class HomeActivity extends AppCompatActivity
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             requestQueue.add(stringRequest);
 
+    }
+
+    private void setProfileImage(String url) {
+
+        if(!url.equals("null")){
+            Picasso.with(this).invalidate(url);
+            Picasso.with(this)
+                    .load(url)
+                    .placeholder(R.drawable.default_profile_pic) // optional
+                    .error(R.drawable.default_profile_pic)// optional
+                    .into(profilePic);
+        }
+        else {
+            profilePic.setImageResource(R.drawable.default_profile_pic);
+        }
     }
 }

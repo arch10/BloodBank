@@ -87,42 +87,43 @@ public class Home extends Fragment {
     }
 
 
-    void fetchView(){
+    public void fetchView(){
         final ProgressDialog pd=new ProgressDialog(ctx);
         pd.setTitle("Getting Requests");
-        pd.setMessage("Please Wait");
+        pd.setMessage("Please wait...");
         pd.show();
         StringRequest stringRequest=new StringRequest(Request.Method.POST,RESPONSE_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        pd.dismiss();
                         if(response!=null){
                             JSONArray jsonArray;
                             try {
-                                jsonArray=new JSONArray(response);
+                                jsonArray = new JSONArray(response);
+
+                                if (jsonArray.length() != 0) {
+                                    error.setVisibility(View.GONE);
+                                    mRecyclerView.setVisibility(View.VISIBLE);
+                                    for (int i = 0; i < response.length(); i++) {
+                                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                        BloodRequest bloodRequest = new BloodRequest();
+                                        bloodRequest.setName(jsonObject.getString("patient_name"));
+                                        bloodRequest.setAge(jsonObject.getString("age"));
+                                        bloodRequest.setHospital(jsonObject.getString("hospital"));
+                                        bloodRequest.setPhone(jsonObject.getString("phone"));
+                                        bloodRequest.setReqId(jsonObject.getString("reqid"));
+                                        list.add(bloodRequest);
+                                    }
+                                    mRequestAdaptor.notifyDataSetChanged();
+                                }
+                                else {
+                                    error.setVisibility(View.VISIBLE);
+                                    mRecyclerView.setVisibility(View.GONE);
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                                jsonArray=new JSONArray();
                             }
-                            for(int i=0;i<response.length();i++){
-                                try {
-                                    JSONObject jsonObject=jsonArray.getJSONObject(i);
-                                    BloodRequest bloodRequest=new BloodRequest();
-                                    bloodRequest.setName(jsonObject.getString("patient_name"));
-                                    bloodRequest.setAge(jsonObject.getString("age"));
-                                    bloodRequest.setHospital(jsonObject.getString("hospital"));
-                                    bloodRequest.setPhone(jsonObject.getString("phone"));
-                                    bloodRequest.setReqId(jsonObject.getString("reqid"));
-                                    list.add(bloodRequest);
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            pd.dismiss();
-                            mRequestAdaptor.notifyDataSetChanged();
-                        }
-                        else {
-                            pd.dismiss();
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -136,7 +137,6 @@ public class Home extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String ,String> params=new HashMap<>();
                 params.put("email",sharedPreferences.getString("email","abc@xyz.com"));
-                params.put("blood",sharedPreferences.getString("bloodgroup","Z+"));
                 return params;
             }
         };

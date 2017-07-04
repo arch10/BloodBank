@@ -14,27 +14,29 @@
         android:textSize="22dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="148dp" />
+        android:layout_marginTop="148dp"
+        android:layout_marginBottom="16dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+91"
         android:textSize="22dp"
         android:padding="8dp"
-        android:layout_below="@+id/tv_enterMob"
-        android:layout_alignStart="@+id/tv_enterMob"
-        android:id="@+id/textView2" />
+        android:id="@+id/textView2"
+        android:layout_above="@+id/btn_sendOtp"
+        android:layout_alignStart="@+id/tv_enterMob" />
 
     <EditText
         android:id="@+id/et_mobno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/tv_enterMob"
-        android:layout_below="@id/tv_enterMob"
-        android:layout_toEndOf="@+id/textView2"
         android:hint="mobile number"
+        android:textSize="22sp"
         android:inputType="phone"
-        android:maxLength="10" />
+        android:maxLength="10"
+        android:layout_below="@+id/tv_enterMob"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_marginTop="19dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -44,6 +46,8 @@
         android:paddingStart="48dp"
         android:paddingEnd="48dp"
         android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="18sp"
         android:background="@color/colorPrimary"
         android:layout_below="@id/et_mobno"
         android:layout_centerHorizontal="true"

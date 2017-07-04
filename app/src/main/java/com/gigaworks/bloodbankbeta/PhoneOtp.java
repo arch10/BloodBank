@@ -28,7 +28,7 @@ public class PhoneOtp extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_sendOtp:
-                if(!phoneno.getText().toString().equals(""))
+                if(!phoneno.getText().toString().equals("")&&phoneno.getText().toString().trim().length()==10)
                     sendOtp();
                 break;
         }
@@ -59,11 +59,11 @@ public class PhoneOtp extends AppCompatActivity implements View.OnClickListener{
                     finish();
                 }
                 else if(otp.getText().toString().equals("")){
-                    Toast.makeText(PhoneOtp.this,"Fill Text",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PhoneOtp.this,"Enter Valid OTP",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(PhoneOtp.this,"Failed",Toast.LENGTH_SHORT).show();
-                    alertDialog.cancel();
+                    Toast.makeText(PhoneOtp.this,"Failed, Mobile cannot be verified",Toast.LENGTH_SHORT).show();
+                    alertDialog.dismiss();
                 }
             }
         });
