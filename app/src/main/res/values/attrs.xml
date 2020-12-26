@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorTextPrimary" format="color" />
+    <attr name="colorTextSecondary" format="color" />
+    <attr name="colorTextAccent" format="color" />
+    <attr name="colorTextDisabled" format="color" />
+    <attr name="colorBorder" format="color" />
+
+    <attr name="colorSuccess" format="color" />
+    <attr name="colorWarn" format="color" />
+    <attr name="colorInfo" format="color" />
+</resources>

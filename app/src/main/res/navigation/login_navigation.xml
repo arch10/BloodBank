@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.gigaworks.tech.bloodbank.ui.login.fragments.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_loginConfirmFragment"
+            app:destination="@id/loginConfirmFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginConfirmFragment"
+        android:name="com.gigaworks.tech.bloodbank.ui.login.fragments.LoginConfirmFragment"
+        android:label="LoginConfirmFragment"
+        tools:layout="@layout/fragment_confirm_login">
+        <action
+            android:id="@+id/action_loginConfirmFragment_to_get_details_navigation"
+            app:destination="@id/get_details_navigation" />
+    </fragment>
+    <include app:graph="@navigation/get_details_navigation" />
+</navigation>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/get_details_navigation"
+    app:startDestination="@id/setNameFragment">
+
+    <fragment
+        android:id="@+id/basicDetailsFragment"
+        android:name="com.gigaworks.tech.bloodbank.ui.register.fragments.BasicDetailsFragment"
+        android:label="BasicDetailsFragment"
+        tools:layout="@layout/fragment_basic_details">
+        <action
+            android:id="@+id/action_basicDetailsFragment_to_locationFragment"
+            app:destination="@id/locationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.gigaworks.tech.bloodbank.ui.register.fragments.LocationFragment"
+        android:label="fragment_register_location"
+        tools:layout="@layout/fragment_register_location" />
+    <fragment
+        android:id="@+id/setNameFragment"
+        android:name="com.gigaworks.tech.bloodbank.ui.register.fragments.SetNameFragment"
+        android:label="fragment_set_name"
+        tools:layout="@layout/fragment_set_name">
+        <action
+            android:id="@+id/action_setNameFragment_to_basicDetailsFragment"
+            app:destination="@id/basicDetailsFragment" />
+    </fragment>
+</navigation>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.register.fragments.ConfirmRegisterFragment">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:backgroundTint="?colorSurface"
+        app:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:navigationIcon="@drawable/arrow_left" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/illustration"
+        android:layout_width="148dp"
+        android:layout_height="148dp"
+        android:layout_marginTop="@dimen/space_l"
+        android:contentDescription="@string/verify_illustration"
+        android:src="@drawable/verify_otp_illustration"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/appBar" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_l"
+        android:text="@string/confirm_otp"
+        android:textAppearance="?attr/textAppearanceHeadline4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@id/illustration" />
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_m"
+        android:text="@string/waiting_to_automatically_detect_an_sms_sent_to"
+        android:textAppearance="?attr/textAppearanceSubtitle2"
+        android:textColor="?colorTextSecondary"
+        app:layout_constraintEnd_toEndOf="@+id/otpLayout"
+        app:layout_constraintStart_toStartOf="@+id/otpLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/otpLayout"
+        style="@style/Widget.BloodBank.TextInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:hint="@string/otp"
+        app:helperText="Enter 6 digit code"
+        android:layout_marginTop="@dimen/space_l"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/subtitle"
+        app:placeholderText=" * * * * * * ">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/otp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:maxLength="6"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/registerBtn"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="@dimen/space_l"
+        android:enabled="false"
+        android:text="@string/register"
+        app:layout_constraintEnd_toEndOf="@+id/otpLayout"
+        app:layout_constraintStart_toStartOf="@+id/otpLayout"
+        app:layout_constraintTop_toBottomOf="@+id/otpLayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_l"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/registerBtn">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/didn_t_receive_the_otp"
+            android:textAppearance="@style/TextAppearance.BloodBank.Caption"
+            android:textColor="@color/secondaryTextColor" />
+
+        <Button
+            android:id="@+id/resendOtpBtn"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/resend_otp"
+            android:textColor="@color/secondaryColor" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/otpText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.BloodBank.Subtitle1"
+        android:textColor="@color/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:text="00 : 46" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/space_xxxl" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/space_xxxl" />
+</androidx.constraintlayout.widget.ConstraintLayout>

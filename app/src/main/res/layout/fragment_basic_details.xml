@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.register.fragments.BasicDetailsFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?attr/colorSurface"
+        app:liftOnScroll="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/arrow_left" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_xxl"
+                android:text="@string/hey_there"
+                android:textAppearance="?attr/textAppearanceHeadline4"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_m"
+                android:text="@string/please_help_us_with_your_details"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textColor="?colorTextSecondary"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/genderLayout"
+                style="@style/Widget.BloodBank.TextInputLayout.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:hint="@string/gender"
+                android:labelFor="@id/gender"
+                android:layout_marginTop="@dimen/space_l"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/subtitle">
+
+                <AutoCompleteTextView
+                    android:id="@+id/gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="1"
+                    android:inputType="textCapWords"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/dobTextLayout"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:background="@drawable/rounded_border"
+                android:gravity="center_vertical"
+                android:hint="@string/date_of_birth"
+                android:layout_marginTop="@dimen/space_m"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="?attr/colorTextSecondary"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/genderLayout" />
+
+            <TextView
+                android:id="@+id/dobHelperText"
+                android:layout_width="0dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="dd/mm/yyyy"
+                android:textColor="@color/disabledColor"
+                android:textAppearance="?attr/textAppearanceCaption"
+                app:layout_constraintEnd_toEndOf="@+id/dobTextLayout"
+                app:layout_constraintStart_toStartOf="@+id/dobTextLayout"
+                app:layout_constraintTop_toBottomOf="@+id/dobTextLayout" />
+
+            <ImageView
+                android:id="@+id/dobEndIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/calendar"
+                android:layout_marginEnd="16dp"
+                app:tint="?attr/colorTextDisabled"
+                android:contentDescription="@string/calender_image"
+                app:layout_constraintBottom_toBottomOf="@+id/dobTextLayout"
+                app:layout_constraintEnd_toEndOf="@+id/dobTextLayout"
+                app:layout_constraintTop_toTopOf="@+id/dobTextLayout" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/weightLayout"
+                style="@style/Widget.BloodBank.TextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:hint="@string/weight"
+                android:layout_marginTop="@dimen/space_m"
+                app:suffixText=" kg"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/dobHelperText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:maxLength="3"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/bloodTypeLayout"
+                style="@style/Widget.BloodBank.TextInputLayout.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:hint="@string/blood_type"
+                android:labelFor="@id/bloodType"
+                android:layout_marginTop="@dimen/space_m"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/weightLayout">
+
+                <AutoCompleteTextView
+                    android:id="@+id/bloodType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="1"
+                    android:inputType="textCapWords"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nextBtn"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="@dimen/space_l"
+                android:text="@string/next"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/bloodTypeLayout" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/space_xxxl" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/space_xxxl" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

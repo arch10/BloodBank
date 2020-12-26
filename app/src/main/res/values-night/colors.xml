@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Primary Shades -->
+    <color name="primaryColor">#FF6464</color>
+    <color name="primaryColorDark">#FF6464</color>
+
+    <!-- Secondary Shades -->
+    <color name="secondaryColor">#646B9D</color>
+    <color name="secondaryColorDark">#3E4685</color>
+
+    <!-- Dark Shades -->
+    <color name="backgroundColor">#212121</color>
+    <color name="surfaceColor">#212121</color>
+    <color name="errorColor">#E75E65</color>
+    <color name="primaryTextColor">#FFFFFF</color>
+    <color name="secondaryTextColor">#E1E1E1</color>
+    <color name="accentTextColor">#040506</color>
+    <color name="disabledColor">#A3A3A3</color>
+    <color name="borderColor">#494949</color>
+    <color name="successColor">#3FCF8A</color>
+    <color name="warnColor">#4DABF5</color>
+    <color name="infoColor">#E75E65</color>
+
+</resources>

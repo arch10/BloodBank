@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_navigation"
+    app:startDestination="@id/registerPhoneFragment">
+
+    <fragment
+        android:id="@+id/registerPhoneFragment"
+        android:name="com.gigaworks.tech.bloodbank.ui.register.fragments.RegisterPhoneFragment"
+        android:label="RegisterPhoneFragment"
+        tools:layout="@layout/fragment_register_phone">
+        <action
+            android:id="@+id/action_registerPhoneFragment_to_confirmRegisterFragment"
+            app:destination="@id/confirmRegisterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmRegisterFragment"
+        android:name="com.gigaworks.tech.bloodbank.ui.register.fragments.ConfirmRegisterFragment"
+        android:label="ConfirmRegisterFragment"
+        tools:layout="@layout/fragment_confirm_register">
+        <action
+            android:id="@+id/action_confirmRegisterFragment_to_get_details_navigation"
+            app:destination="@id/get_details_navigation" />
+    </fragment>
+    <include app:graph="@navigation/get_details_navigation" />
+</navigation>

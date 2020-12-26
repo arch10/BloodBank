@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Primary Shades -->
+    <color name="primaryColor">#FF3E3E</color>
+    <color name="primaryColorDark">#c40016</color>
+
+    <!-- Secondary Shades -->
+    <color name="secondaryColor">#3E4685</color>
+    <color name="secondaryColorDark">#071f58</color>
+
+    <!-- Light Shades -->
+    <color name="backgroundColor">#ffffff</color>
+    <color name="surfaceColor">#ffffff</color>
+    <color name="errorColor">#E2363F</color>
+    <color name="primaryTextColor">#263238</color>
+    <color name="secondaryTextColor">#3A444A</color>
+    <color name="accentTextColor">#F7F7F7</color>
+    <color name="disabledColor">#949899</color>
+    <color name="borderColor">#D4D6D7</color>
+    <color name="successColor">#0FC46D</color>
+    <color name="warnColor">#F9D534</color>
+    <color name="infoColor">#3A6DFC</color>
+
+    <!-- Extra Shades -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!--Material Shades -->
+    <color name="materialGreen">#4caf50</color>
+    <color name="materialRed">#f44336</color>
+    <color name="materialBlue">#448aff</color>
+    <color name="materialDarkBlue">#3F51B5</color>
+    <color name="materialOrange">#ff5722</color>
+    <color name="materialSteelGrey">#607d8b</color>
+    <color name="materialYellow">#ffc107</color>
+    <color name="materialLGreen">#8bc34a</color>
+    <color name="materialPink">#e91e63</color>
+    <color name="materialDarkGrey">#455A64</color>
+    <color name="materialPurple">#9C27B0</color>
+    <color name="materialLightOrange">#FF9800</color>
+
+</resources>
