@@ -1,4 +1,4 @@
-package com.gigaworks.tech.bloodbank.ui.register.fragments
+package com.gigaworks.tech.bloodbank.ui.getdetails.fragments
 
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
@@ -15,17 +15,16 @@ import androidx.navigation.fragment.findNavController
 import com.gigaworks.tech.bloodbank.R
 import com.gigaworks.tech.bloodbank.databinding.FragmentBasicDetailsBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseFragment
-import com.gigaworks.tech.bloodbank.ui.register.viewmodels.RegisterViewModel
+import com.gigaworks.tech.bloodbank.ui.getdetails.viewmodels.GetDetailsViewModel
 import com.gigaworks.tech.bloodbank.util.*
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.snackbar.Snackbar
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
 class BasicDetailsFragment : BaseFragment<FragmentBasicDetailsBinding>() {
-    private val viewModel by activityViewModels<RegisterViewModel>()
+    private val viewModel by activityViewModels<GetDetailsViewModel>()
     private val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
 
     override fun onCreateView(

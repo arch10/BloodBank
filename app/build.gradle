@@ -74,4 +74,18 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltLifecycleVersion"
     kapt "androidx.hilt:hilt-compiler:$hiltLifecycleVersion"
 
+    def retrofitVersion = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    def okhttpVersion = "4.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+
+    def glideVersion = "4.11.0"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+
+    def roomVersion = "2.2.6"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 }

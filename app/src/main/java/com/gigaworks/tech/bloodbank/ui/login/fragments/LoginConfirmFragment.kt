@@ -14,7 +14,7 @@ import com.gigaworks.tech.bloodbank.R
 import com.gigaworks.tech.bloodbank.databinding.FragmentConfirmLoginBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseFragment
 import com.gigaworks.tech.bloodbank.ui.login.viewmodels.LoginConfirmViewModel
-import com.gigaworks.tech.bloodbank.ui.register.fragments.SetNameFragment
+import com.gigaworks.tech.bloodbank.ui.getdetails.fragments.SetNameFragment
 import com.gigaworks.tech.bloodbank.util.FieldValidation
 import com.gigaworks.tech.bloodbank.util.TextErrorWatcher
 import com.gigaworks.tech.bloodbank.util.hideError

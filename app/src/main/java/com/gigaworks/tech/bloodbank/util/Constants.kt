@@ -6,6 +6,9 @@ const val TAG = "BloodBank:DEBUG"
 // OTP timer in seconds
 const val OTP_TIMER = 120L
 
+//backend base url
+const val BASE_URL = "http://localhost:8080"
+
 // Maharashtra cities list *will be removed after a while as this will be fetched via an API
 val CITIES_LIST = listOf(
     "Ahmednagar",

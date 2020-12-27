@@ -1,11 +1,11 @@
-package com.gigaworks.tech.bloodbank.ui.register.viewmodels
+package com.gigaworks.tech.bloodbank.ui.getdetails.viewmodels
 
 import androidx.lifecycle.ViewModel
 import com.gigaworks.tech.bloodbank.domain.model.User
 import com.gigaworks.tech.bloodbank.util.BloodType
 import com.gigaworks.tech.bloodbank.util.Gender
 
-class RegisterViewModel : ViewModel() {
+class GetDetailsViewModel : ViewModel() {
     var fName: String = ""
     var lName: String = ""
     var gender: String = ""

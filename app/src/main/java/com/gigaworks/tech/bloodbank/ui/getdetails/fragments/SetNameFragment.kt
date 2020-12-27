@@ -1,4 +1,4 @@
-package com.gigaworks.tech.bloodbank.ui.register.fragments
+package com.gigaworks.tech.bloodbank.ui.getdetails.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.gigaworks.tech.bloodbank.R
 import com.gigaworks.tech.bloodbank.databinding.FragmentSetNameBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseFragment
-import com.gigaworks.tech.bloodbank.ui.register.viewmodels.RegisterViewModel
+import com.gigaworks.tech.bloodbank.ui.getdetails.viewmodels.GetDetailsViewModel
 import com.gigaworks.tech.bloodbank.util.FieldValidation
 import com.gigaworks.tech.bloodbank.util.TextErrorWatcher
 import com.gigaworks.tech.bloodbank.util.hideError
@@ -33,7 +33,7 @@ class SetNameFragment : BaseFragment<FragmentSetNameBinding>() {
     private val phoneNumber: String by lazy {
         arguments?.getString(PHONE_NUMBER, "") ?: ""
     }
-    private val viewModel by activityViewModels<RegisterViewModel>()
+    private val viewModel by activityViewModels<GetDetailsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

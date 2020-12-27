@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.gigaworks.tech.bloodbank.R
 import com.gigaworks.tech.bloodbank.databinding.FragmentConfirmRegisterBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseFragment
+import com.gigaworks.tech.bloodbank.ui.getdetails.fragments.SetNameFragment
 import com.gigaworks.tech.bloodbank.ui.login.fragments.LoginConfirmFragment
 import com.gigaworks.tech.bloodbank.ui.login.viewmodels.LoginConfirmViewModel
 import com.gigaworks.tech.bloodbank.util.FieldValidation

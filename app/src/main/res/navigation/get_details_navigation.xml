@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/basicDetailsFragment"
-        android:name="com.gigaworks.tech.bloodbank.ui.register.fragments.BasicDetailsFragment"
+        android:name="com.gigaworks.tech.bloodbank.ui.getdetails.fragments.BasicDetailsFragment"
         android:label="BasicDetailsFragment"
         tools:layout="@layout/fragment_basic_details">
         <action
@@ -16,12 +16,12 @@
     </fragment>
     <fragment
         android:id="@+id/locationFragment"
-        android:name="com.gigaworks.tech.bloodbank.ui.register.fragments.LocationFragment"
+        android:name="com.gigaworks.tech.bloodbank.ui.getdetails.fragments.LocationFragment"
         android:label="fragment_register_location"
         tools:layout="@layout/fragment_register_location" />
     <fragment
         android:id="@+id/setNameFragment"
-        android:name="com.gigaworks.tech.bloodbank.ui.register.fragments.SetNameFragment"
+        android:name="com.gigaworks.tech.bloodbank.ui.getdetails.fragments.SetNameFragment"
         android:label="fragment_set_name"
         tools:layout="@layout/fragment_set_name">
         <action

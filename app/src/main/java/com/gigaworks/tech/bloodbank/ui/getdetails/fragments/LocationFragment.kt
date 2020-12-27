@@ -1,4 +1,4 @@
-package com.gigaworks.tech.bloodbank.ui.register.fragments
+package com.gigaworks.tech.bloodbank.ui.getdetails.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,13 +10,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.gigaworks.tech.bloodbank.databinding.FragmentRegisterLocationBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseFragment
-import com.gigaworks.tech.bloodbank.ui.register.viewmodels.RegisterViewModel
+import com.gigaworks.tech.bloodbank.ui.getdetails.viewmodels.GetDetailsViewModel
 import com.gigaworks.tech.bloodbank.util.CITIES_LIST
 import com.gigaworks.tech.bloodbank.util.FieldValidation
 import com.google.android.material.snackbar.Snackbar
 
 class LocationFragment : BaseFragment<FragmentRegisterLocationBinding>() {
-    private val viewModel by activityViewModels<RegisterViewModel>()
+    private val viewModel by activityViewModels<GetDetailsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
