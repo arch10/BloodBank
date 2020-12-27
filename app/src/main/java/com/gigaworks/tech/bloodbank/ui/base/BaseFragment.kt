@@ -12,9 +12,9 @@ import androidx.annotation.Size
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
-import com.gigaworks.tech.bloodbank.util.printLogD
+import com.gigaworks.tech.bloodbank.util.logD
+import com.gigaworks.tech.bloodbank.util.logE
 
 abstract class BaseFragment<B : ViewBinding> : Fragment() {
     private var _binding: B? = null
@@ -66,8 +66,7 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
                 val colorInt = Color.parseColor(color)
                 activity?.window?.statusBarColor = colorInt
             } catch (e: IllegalArgumentException) {
-                //TODO("add FirebaseCrashlytics log logic here")
-                printLogD(this.javaClass.simpleName, e.message)
+                logE(e.message)
             }
         }
     }

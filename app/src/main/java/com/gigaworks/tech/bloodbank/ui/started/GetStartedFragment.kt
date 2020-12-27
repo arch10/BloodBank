@@ -9,7 +9,6 @@ import com.gigaworks.tech.bloodbank.databinding.FragmentGetstartedBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseFragment
 import com.gigaworks.tech.bloodbank.ui.login.LoginActivity
 import com.gigaworks.tech.bloodbank.ui.register.RegisterActivity
-import com.google.android.material.snackbar.Snackbar
 
 class GetStartedFragment : BaseFragment<FragmentGetstartedBinding>() {
     override fun onCreateView(

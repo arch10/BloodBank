@@ -18,3 +18,7 @@ fun Fragment.getClassName(): String {
 fun Fragment.logD(msg: String?) {
     printLogD(this.getClassName(), msg)
 }
+
+fun Fragment.logE(msg: String?) {
+    printLogE(this.getClassName(), msg)
+}

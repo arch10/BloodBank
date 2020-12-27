@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "124303099009",
+    "firebase_url": "https://bloodbank-8778c.firebaseio.com",
+    "project_id": "bloodbank-8778c",
+    "storage_bucket": "bloodbank-8778c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124303099009:android:7afe049b5b0ed2ae523980",
+        "android_client_info": {
+          "package_name": "com.gigaworks.tech.bloodbank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124303099009-tvjjb1i7eck6cj00jgeebcvm9oe841bh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCql4r36ptgyrwM7DnuGPnD8tOeAan2CAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124303099009-tvjjb1i7eck6cj00jgeebcvm9oe841bh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124303099009:android:56ed17e58ee0cb44",
+        "android_client_info": {
+          "package_name": "tech.gigaworks.com.bloodbank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124303099009-k1310e86oavd0r3lvvbs3gfi4mnut98e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tech.gigaworks.com.bloodbank",
+            "certificate_hash": "3e6a04e912918646b335284a3a9846fda8f906c3"
+          }
+        },
+        {
+          "client_id": "124303099009-n03bbf0hf2rd89hjcuo2ar5dhj161hpg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tech.gigaworks.com.bloodbank",
+            "certificate_hash": "44c2969cb2ddfd63f8fb7e47520dd37d0c703ff1"
+          }
+        },
+        {
+          "client_id": "124303099009-tvjjb1i7eck6cj00jgeebcvm9oe841bh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCql4r36ptgyrwM7DnuGPnD8tOeAan2CAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124303099009-tvjjb1i7eck6cj00jgeebcvm9oe841bh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
