@@ -9,12 +9,10 @@ import androidx.navigation.fragment.findNavController
 import com.gigaworks.tech.bloodbank.R
 import com.gigaworks.tech.bloodbank.databinding.FragmentRegisterPhoneBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseFragment
-import com.gigaworks.tech.bloodbank.ui.login.fragments.LoginConfirmFragment
 import com.gigaworks.tech.bloodbank.util.FieldValidation
 import com.gigaworks.tech.bloodbank.util.TextErrorWatcher
 import com.gigaworks.tech.bloodbank.util.hideError
 import com.gigaworks.tech.bloodbank.util.showError
-import com.google.android.material.snackbar.Snackbar
 
 class RegisterPhoneFragment : BaseFragment<FragmentRegisterPhoneBinding>() {
     private val errorWatcher: TextErrorWatcher by lazy {
