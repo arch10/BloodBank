@@ -15,11 +15,16 @@ import com.gigaworks.tech.bloodbank.databinding.FragmentConfirmRegisterBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseFragment
 import com.gigaworks.tech.bloodbank.ui.getdetails.fragments.SetNameFragment
 import com.gigaworks.tech.bloodbank.ui.login.fragments.LoginConfirmFragment
-import com.gigaworks.tech.bloodbank.ui.login.viewmodels.LoginConfirmViewModel
-import com.gigaworks.tech.bloodbank.util.FieldValidation
-import com.gigaworks.tech.bloodbank.util.TextErrorWatcher
-import com.gigaworks.tech.bloodbank.util.hideError
+import com.gigaworks.tech.bloodbank.ui.register.viewmodels.RegisterViewModel
+import com.gigaworks.tech.bloodbank.util.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import java.util.concurrent.TimeUnit
 
 class ConfirmRegisterFragment : BaseFragment<FragmentConfirmRegisterBinding>() {
     private val errorWatcher: TextErrorWatcher by lazy {
@@ -36,20 +41,23 @@ class ConfirmRegisterFragment : BaseFragment<FragmentConfirmRegisterBinding>() {
             binding.registerBtn.isEnabled = isEnabled
         }
     }
+    private val firebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
     private val phoneNumber: String by lazy {
         arguments?.getString(LoginConfirmFragment.PHONE_NUMBER, "") ?: ""
     }
-    private val viewModel by viewModels<LoginConfirmViewModel>()
+    private val viewModel by viewModels<RegisterViewModel>()
     private val dialogBuilder: MaterialAlertDialogBuilder by lazy {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("Discard OTP verification ?")
             .setMessage("Do you want to discard the OTP verification ?")
             .setCancelable(false)
-            .setPositiveButton("Discard") { dialog, which ->
+            .setPositiveButton("Discard") { dialog, _ ->
                 findNavController().navigateUp()
                 dialog.dismiss()
             }
-            .setNegativeButton("Cancel") { dialog, which ->
+            .setNegativeButton("Cancel") { dialog, _ ->
                 dialog.dismiss()
             }
     }
@@ -91,6 +99,29 @@ class ConfirmRegisterFragment : BaseFragment<FragmentConfirmRegisterBinding>() {
         viewModel.timerText.observe(viewLifecycleOwner, { timerText ->
             binding.otpText.text = timerText
         })
+
+        viewModel.hasUserDetails.observe(viewLifecycleOwner, { hasDetails ->
+            binding.loaderView.loaderOverlay.hide()
+            if (!hasDetails) {
+                val bundle = bundleOf(
+                    SetNameFragment.PHONE_NUMBER to phoneNumber
+                )
+                findNavController().navigate(
+                    R.id.action_confirmRegisterFragment_to_get_details_navigation,
+                    bundle
+                )
+            } else {
+                Snackbar.make(binding.root, "Has Details!!", Snackbar.LENGTH_SHORT).show()
+            }
+        })
+
+        viewModel.loginError.observe(viewLifecycleOwner, {loginError->
+            if(loginError != "") {
+                binding.otpLayout.error = loginError
+                binding.loaderView.loaderOverlay.hide()
+            }
+        })
+        sendPhoneOtp(phoneNumber)
     }
 
     private fun handleBackPress() {
@@ -103,17 +134,55 @@ class ConfirmRegisterFragment : BaseFragment<FragmentConfirmRegisterBinding>() {
         binding.otp.addTextChangedListener(errorWatcher)
         binding.registerBtn.setOnClickListener {
             hideKeyboard()
-            val bundle = bundleOf(
-                SetNameFragment.PHONE_NUMBER to phoneNumber
-            )
-            findNavController().navigate(
-                R.id.action_confirmRegisterFragment_to_get_details_navigation,
-                bundle
-            )
+            binding.loaderView.loaderOverlay.show()
+            viewModel.verifyOtp(binding.otp.text.toString())
         }
         binding.resendOtpBtn.setOnClickListener {
             disableResendBtn()
             viewModel.startTimer()
+            val resendToken = viewModel.getResendToken()
+            sendPhoneOtp(phoneNumber, resendToken)
+        }
+    }
+
+    //function to send OTP to provided phone number
+    private fun sendPhoneOtp(
+        phoneNumber: String,
+        resendToken: PhoneAuthProvider.ForceResendingToken? = null
+    ) {
+        val phone = "+91$phoneNumber"
+        val builder = PhoneAuthOptions.newBuilder(firebaseAuth)
+            .setPhoneNumber(phone)
+            .setActivity(requireActivity())
+            .setTimeout(OTP_TIMER, TimeUnit.SECONDS)
+            .setCallbacks(callbacks)
+        if (resendToken != null) {
+            builder.setForceResendingToken(resendToken)
+        }
+        PhoneAuthProvider.verifyPhoneNumber(builder.build())
+    }
+
+    private val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+            logD("onVerificationCompleted: Auto verification completed")
+            binding.loaderView.loaderOverlay.show()
+            viewModel.signInWithPhoneCredential(credential)
+        }
+
+        override fun onVerificationFailed(e: FirebaseException) {
+            logE("onVerificationFailed: ${e.message}")
+            binding.loaderView.loaderOverlay.hide()
+            //TODO("Implement different exceptions")
+            //some error occurred, return the user to previous page
+            //FirebaseTooManyRequestsException & FirebaseAuthInvalidCredentialsException
+        }
+
+        override fun onCodeSent(
+            verificationId: String,
+            token: PhoneAuthProvider.ForceResendingToken
+        ) {
+            logD("onCodeSent: Code sent")
+            viewModel.setOtpResendParams(verificationId, token)
         }
     }
 

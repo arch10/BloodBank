@@ -9,4 +9,5 @@
     <attr name="colorSuccess" format="color" />
     <attr name="colorWarn" format="color" />
     <attr name="colorInfo" format="color" />
+    <attr name="colorLoaderBackground" format="color"/>
 </resources>

@@ -21,5 +21,6 @@
     <color name="successColor">#3FCF8A</color>
     <color name="warnColor">#4DABF5</color>
     <color name="infoColor">#E75E65</color>
+    <color name="loaderBackground">#cc212121</color>
 
 </resources>

@@ -23,6 +23,7 @@
         <item name="colorSuccess">@color/successColor</item>
         <item name="colorInfo">@color/infoColor</item>
         <item name="colorWarn">@color/warnColor</item>
+        <item name="colorLoaderBackground">@color/loaderBackground</item>
         <!-- Widget Themes -->
         <item name="materialButtonStyle">@style/Widget.BloodBank.Button</item>
         <item name="materialButtonOutlinedStyle">@style/Widget.BloodBank.Button.Outlined</item>

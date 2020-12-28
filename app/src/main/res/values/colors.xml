@@ -21,6 +21,7 @@
     <color name="successColor">#0FC46D</color>
     <color name="warnColor">#F9D534</color>
     <color name="infoColor">#3A6DFC</color>
+    <color name="loaderBackground">#ccffffff</color>
 
     <!-- Extra Shades -->
     <color name="black">#FF000000</color>
