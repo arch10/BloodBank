@@ -12,7 +12,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
-import com.gigaworks.tech.bloodbank.ui.MainActivity
+import com.gigaworks.tech.bloodbank.ui.started.MainActivity
 import com.gigaworks.tech.bloodbank.ui.home.HomeActivity
 import com.gigaworks.tech.bloodbank.util.logD
 import com.google.firebase.auth.FirebaseAuth

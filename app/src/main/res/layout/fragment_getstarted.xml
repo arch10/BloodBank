@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/started_background"
-    tools:context=".ui.started.GetStartedFragment">
+    tools:context=".ui.started.fragments.GetStartedFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shapeableImageView"
         android:layout_width="204dp"
         android:layout_height="152dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/space_xxl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline"
         app:srcCompat="@drawable/donation_illustration" />
 
     <TextView
@@ -22,7 +22,7 @@
         style="?attr/textAppearanceHeadline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="@dimen/space_xxxxl"
         android:text="@string/save_lives"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintEnd_toEndOf="@+id/shapeableImageView"
@@ -49,37 +49,22 @@
         app:srcCompat="@drawable/logo" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/createAccountBtn"
+        android:id="@+id/getStartedBtn"
         android:layout_width="0dp"
         android:layout_height="72dp"
-        android:text="@string/create_account"
-        android:layout_marginTop="@dimen/space_l"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="@dimen/space_xxl"
         android:layout_marginEnd="32dp"
+        android:text="@string/get_started"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoImg" />
 
-    <TextView
-        android:id="@+id/textView3"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/already_have_an_account"
-        style="?attr/textAppearanceCaption"
-        android:layout_marginTop="@dimen/space_l"
-        app:layout_constraintTop_toBottomOf="@id/createAccountBtn"
-        app:layout_constraintStart_toStartOf="@id/createAccountBtn"
-        app:layout_constraintEnd_toEndOf="@id/createAccountBtn" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/loginBtn"
-        style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="@dimen/space_l"
-        android:text="@string/login"
-        app:layout_constraintEnd_toEndOf="@+id/createAccountBtn"
-        app:layout_constraintStart_toStartOf="@+id/createAccountBtn"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

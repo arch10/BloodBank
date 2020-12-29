@@ -1,4 +1,4 @@
-package com.gigaworks.tech.bloodbank.ui.started
+package com.gigaworks.tech.bloodbank.ui.started.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.gigaworks.tech.bloodbank.databinding.FragmentGetstartedBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseFragment
-import com.gigaworks.tech.bloodbank.ui.login.LoginActivity
 import com.gigaworks.tech.bloodbank.ui.register.RegisterActivity
 
 class GetStartedFragment : BaseFragment<FragmentGetstartedBinding>() {
@@ -15,13 +14,10 @@ class GetStartedFragment : BaseFragment<FragmentGetstartedBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.createAccountBtn.setOnClickListener {
+        binding.getStartedBtn.setOnClickListener {
             startActivity(Intent(activity, RegisterActivity::class.java))
         }
 
-        binding.loginBtn.setOnClickListener {
-            startActivity(Intent(activity, LoginActivity::class.java))
-        }
     }
 
     override fun getViewBinding(

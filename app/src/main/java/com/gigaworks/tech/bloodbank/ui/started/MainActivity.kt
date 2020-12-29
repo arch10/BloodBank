@@ -1,4 +1,4 @@
-package com.gigaworks.tech.bloodbank.ui
+package com.gigaworks.tech.bloodbank.ui.started
 
 import android.view.LayoutInflater
 import com.gigaworks.tech.bloodbank.databinding.ActivityMainBinding

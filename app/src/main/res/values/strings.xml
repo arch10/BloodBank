@@ -2,7 +2,7 @@
     <string name="app_name">BloodBank</string>
     <string name="save_lives">Save Lives</string>
     <string name="with">with</string>
-    <string name="create_account">Create Account</string>
+    <string name="get_started">Get Started</string>
     <string name="already_have_an_account">Already have an account ?</string>
     <string name="login">Login</string>
     <string name="phone_number">Phone Number</string>
@@ -17,7 +17,7 @@
     <string name="let_s_start">Let\'s Start</string>
     <string name="we_will_send_you_a_one_time_password">We will send you a One Time Password on this mobile number.</string>
     <string name="otp">OTP</string>
-    <string name="register">Register</string>
+    <string name="verify">Verify</string>
     <string name="confirm_otp">Confirm OTP</string>
     <string name="hey_there">Hey There !</string>
     <string name="what_should_we_call_you">What should we call you ?</string>
