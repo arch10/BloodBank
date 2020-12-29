@@ -104,7 +104,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/didn_t_receive_the_otp"
+            android:text="@string/did_not_receive_the_otp"
             android:textAppearance="@style/TextAppearance.BloodBank.Caption"
             android:textColor="@color/secondaryTextColor" />
 

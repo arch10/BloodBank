@@ -1,5 +1,6 @@
 package com.gigaworks.tech.bloodbank.ui.register.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,11 +15,11 @@ import com.gigaworks.tech.bloodbank.R
 import com.gigaworks.tech.bloodbank.databinding.FragmentConfirmRegisterBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseFragment
 import com.gigaworks.tech.bloodbank.ui.getdetails.fragments.SetNameFragment
+import com.gigaworks.tech.bloodbank.ui.home.HomeActivity
 import com.gigaworks.tech.bloodbank.ui.login.fragments.LoginConfirmFragment
 import com.gigaworks.tech.bloodbank.ui.register.viewmodels.RegisterViewModel
 import com.gigaworks.tech.bloodbank.util.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -75,7 +76,6 @@ class ConfirmRegisterFragment : BaseFragment<FragmentConfirmRegisterBinding>() {
     }
 
     private fun setUpView() {
-        setStatusBarColor(STATUS_BAR_TRANSPARENT)
         setActionBar(binding.toolbar, onBackIconClick = {
             handleBackPress()
         })
@@ -111,12 +111,14 @@ class ConfirmRegisterFragment : BaseFragment<FragmentConfirmRegisterBinding>() {
                     bundle
                 )
             } else {
-                Snackbar.make(binding.root, "Has Details!!", Snackbar.LENGTH_SHORT).show()
+                startActivity(Intent(activity, HomeActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                })
             }
         })
 
-        viewModel.loginError.observe(viewLifecycleOwner, {loginError->
-            if(loginError != "") {
+        viewModel.loginError.observe(viewLifecycleOwner, { loginError ->
+            if (loginError != "") {
                 binding.otpLayout.error = loginError
                 binding.loaderView.loaderOverlay.hide()
             }

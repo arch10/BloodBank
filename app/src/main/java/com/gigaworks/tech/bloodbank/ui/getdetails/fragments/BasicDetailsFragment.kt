@@ -39,7 +39,6 @@ class BasicDetailsFragment : BaseFragment<FragmentBasicDetailsBinding>() {
     }
 
     private fun setUpView() {
-        setStatusBarColor(STATUS_BAR_TRANSPARENT)
         setActionBar(binding.toolbar, onBackIconClick = {
             handleBackPress()
         })

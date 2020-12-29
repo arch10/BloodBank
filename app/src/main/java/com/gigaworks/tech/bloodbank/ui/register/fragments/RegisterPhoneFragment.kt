@@ -34,7 +34,6 @@ class RegisterPhoneFragment : BaseFragment<FragmentRegisterPhoneBinding>() {
     }
 
     private fun setUpView() {
-        setStatusBarColor(STATUS_BAR_TRANSPARENT)
         setActionBar(binding.toolbar, onBackIconClick = {
             requireActivity().finish()
         })

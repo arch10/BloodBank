@@ -36,7 +36,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     private fun setUpView() {
-        setStatusBarColor(STATUS_BAR_TRANSPARENT)
         setActionBar(binding.toolbar, onBackIconClick = {
             requireActivity().finish()
         })

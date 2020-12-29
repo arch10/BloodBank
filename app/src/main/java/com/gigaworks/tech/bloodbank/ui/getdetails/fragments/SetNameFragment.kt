@@ -47,7 +47,6 @@ class SetNameFragment : BaseFragment<FragmentSetNameBinding>() {
     }
 
     private fun setUpView() {
-        setStatusBarColor(STATUS_BAR_TRANSPARENT)
         setActionBar(binding.toolbar)
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,

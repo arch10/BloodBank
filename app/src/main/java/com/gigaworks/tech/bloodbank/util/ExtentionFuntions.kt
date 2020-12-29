@@ -1,5 +1,6 @@
 package com.gigaworks.tech.bloodbank.util
 
+import android.app.Activity
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -34,6 +35,18 @@ fun ViewModel.logD(msg: String?) {
 }
 
 fun ViewModel.logE(msg: String?) {
+    printLogE(this.getClassName(), msg)
+}
+
+fun Activity.getClassName():String {
+    return this.javaClass.simpleName
+}
+
+fun Activity.logD(msg: String?) {
+    printLogD(this.getClassName(), msg)
+}
+
+fun Activity.logE(msg: String?) {
     printLogE(this.getClassName(), msg)
 }
 

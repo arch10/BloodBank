@@ -13,7 +13,7 @@
     <string name="invalid_phone_number">Invalid phone number</string>
     <string name="waiting_to_automatically_detect_an_sms_sent_to">Waiting to automatically detect an SMS sent to</string>
     <string name="resend_otp"> <u>RESEND OTP</u> </string>
-    <string name="didn_t_receive_the_otp">Did not receive the OTP ?</string>
+    <string name="did_not_receive_the_otp">Did not receive the OTP ?</string>
     <string name="let_s_start">Let\'s Start</string>
     <string name="we_will_send_you_a_one_time_password">We will send you a One Time Password on this mobile number.</string>
     <string name="otp">OTP</string>
@@ -37,4 +37,7 @@
     <string name="verify_illustration">Verify Illustration</string>
     <string name="send_otp_illustration">Send Otp Illustration</string>
     <string name="illustration">Illustration</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

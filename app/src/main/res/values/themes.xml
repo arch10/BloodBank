@@ -1,4 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Cold start theme -->
+    <style name="ColdStart" parent="Theme.BloodBank">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">?attr/isLightTheme</item>
+    </style>
+
     <!-- Base application theme. -->
     <style name="Theme.BloodBank" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -24,6 +31,8 @@
         <item name="colorInfo">@color/infoColor</item>
         <item name="colorWarn">@color/warnColor</item>
         <item name="colorLoaderBackground">@color/loaderBackground</item>
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">?attr/isLightTheme</item>
         <!-- Widget Themes -->
         <item name="materialButtonStyle">@style/Widget.BloodBank.Button</item>
         <item name="materialButtonOutlinedStyle">@style/Widget.BloodBank.Button.Outlined</item>

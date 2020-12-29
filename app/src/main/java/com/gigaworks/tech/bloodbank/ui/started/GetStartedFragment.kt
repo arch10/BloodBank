@@ -11,15 +11,6 @@ import com.gigaworks.tech.bloodbank.ui.login.LoginActivity
 import com.gigaworks.tech.bloodbank.ui.register.RegisterActivity
 
 class GetStartedFragment : BaseFragment<FragmentGetstartedBinding>() {
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        super.onCreateView(inflater, container, savedInstanceState)
-        setStatusBarColor(STATUS_BAR_TRANSPARENT)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

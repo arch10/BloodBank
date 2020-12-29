@@ -14,18 +14,22 @@
         android:supportsRtl="false"
         android:theme="@style/Theme.BloodBank">
         <activity
+            android:name=".ui.home.HomeActivity"/>
+        <activity
             android:name=".ui.register.RegisterActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"/>
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.splash.SplashActivity"
+            android:theme="@style/ColdStart">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
