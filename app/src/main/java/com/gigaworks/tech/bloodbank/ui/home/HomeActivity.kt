@@ -11,17 +11,21 @@ import com.gigaworks.tech.bloodbank.databinding.ActivityHomeBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseActivity
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val navView = binding.navView
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home,
+                R.id.navigation_recent,
+                R.id.navigation_add,
+                R.id.navigation_nearby,
+                R.id.navigation_more
             )
         )
         setSupportActionBar(findViewById(R.id.toolbar))

@@ -22,7 +22,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
-        android:layout_width="300dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/space_l"
         android:layout_marginRight="@dimen/space_l"
