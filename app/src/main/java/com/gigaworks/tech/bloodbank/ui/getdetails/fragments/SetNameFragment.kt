@@ -14,7 +14,9 @@ import com.gigaworks.tech.bloodbank.ui.getdetails.viewmodels.GetDetailsViewModel
 import com.gigaworks.tech.bloodbank.util.FieldValidation
 import com.gigaworks.tech.bloodbank.util.TextErrorWatcher
 import com.gigaworks.tech.bloodbank.util.hideError
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SetNameFragment : BaseFragment<FragmentSetNameBinding>() {
     private val errorWatcher: TextErrorWatcher by lazy {
         TextErrorWatcher {

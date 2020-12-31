@@ -1,20 +1,27 @@
 package com.gigaworks.tech.bloodbank.ui.getdetails.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.activity.OnBackPressedCallback
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.gigaworks.tech.bloodbank.R
 import com.gigaworks.tech.bloodbank.databinding.FragmentRegisterLocationBinding
+import com.gigaworks.tech.bloodbank.network.Resource
 import com.gigaworks.tech.bloodbank.ui.base.BaseFragment
 import com.gigaworks.tech.bloodbank.ui.getdetails.viewmodels.GetDetailsViewModel
-import com.gigaworks.tech.bloodbank.util.CITIES_LIST
-import com.gigaworks.tech.bloodbank.util.FieldValidation
+import com.gigaworks.tech.bloodbank.ui.home.HomeActivity
+import com.gigaworks.tech.bloodbank.util.*
+import com.gigaworks.tech.bloodbank.util.logD
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LocationFragment : BaseFragment<FragmentRegisterLocationBinding>() {
     private val viewModel by activityViewModels<GetDetailsViewModel>()
 
@@ -30,6 +37,37 @@ class LocationFragment : BaseFragment<FragmentRegisterLocationBinding>() {
     }
 
     private fun setUpObservables() {
+        viewModel.loading.observe(viewLifecycleOwner, {
+            binding.loaderView.loaderOverlay.visible(it)
+        })
+
+        viewModel.user.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Success -> {
+                    startActivity(Intent(activity, HomeActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    })
+                }
+                is Resource.Failure -> {
+                    logE("userObserve: ${it.message}")
+                    Snackbar.make(
+                        binding.root,
+                        "Cannot save user details. Try again later",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        })
+
+        viewModel.loginError.observe(viewLifecycleOwner, { loginError ->
+            if (loginError != "") {
+                Snackbar.make(
+                    binding.root,
+                    loginError,
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+        })
     }
 
     private fun setUpView() {
@@ -76,7 +114,6 @@ class LocationFragment : BaseFragment<FragmentRegisterLocationBinding>() {
                 viewModel.state = binding.state.text.toString()
                 viewModel.city = binding.city.text.toString()
                 viewModel.saveUser()
-                Snackbar.make(view, "Yayy!!", Snackbar.LENGTH_SHORT).show()
             }
         }
     }

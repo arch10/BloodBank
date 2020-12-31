@@ -10,9 +10,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.gigaworks.tech.bloodbank.R
 import com.gigaworks.tech.bloodbank.databinding.FragmentConfirmRegisterBinding
+import com.gigaworks.tech.bloodbank.network.Resource
 import com.gigaworks.tech.bloodbank.ui.base.BaseFragment
 import com.gigaworks.tech.bloodbank.ui.getdetails.fragments.SetNameFragment
 import com.gigaworks.tech.bloodbank.ui.home.HomeActivity
@@ -25,8 +27,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
+@AndroidEntryPoint
 class ConfirmRegisterFragment : BaseFragment<FragmentConfirmRegisterBinding>() {
     private val errorWatcher: TextErrorWatcher by lazy {
         TextErrorWatcher {
@@ -100,27 +104,33 @@ class ConfirmRegisterFragment : BaseFragment<FragmentConfirmRegisterBinding>() {
             binding.otpText.text = timerText
         })
 
-        viewModel.hasUserDetails.observe(viewLifecycleOwner, { hasDetails ->
-            binding.loaderView.loaderOverlay.hide()
-            if (!hasDetails) {
-                val bundle = bundleOf(
-                    SetNameFragment.PHONE_NUMBER to phoneNumber
-                )
-                findNavController().navigate(
-                    R.id.action_confirmRegisterFragment_to_get_details_navigation,
-                    bundle
-                )
-            } else {
-                startActivity(Intent(activity, HomeActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                })
+        viewModel.loading.observe(viewLifecycleOwner, {
+            binding.loaderView.loaderOverlay.visible(it)
+        })
+
+        viewModel.user.observe(viewLifecycleOwner, {
+            when (it) {
+                is Resource.Success -> {
+                    startActivity(Intent(activity, HomeActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    })
+                }
+                is Resource.Failure -> {
+                    logD("userObserver: ${it.message}")
+                    val bundle = bundleOf(
+                        SetNameFragment.PHONE_NUMBER to phoneNumber
+                    )
+                    findNavController().navigate(
+                        R.id.action_confirmRegisterFragment_to_get_details_navigation,
+                        bundle
+                    )
+                }
             }
         })
 
         viewModel.loginError.observe(viewLifecycleOwner, { loginError ->
             if (loginError != "") {
                 binding.otpLayout.error = loginError
-                binding.loaderView.loaderOverlay.hide()
             }
         })
         sendPhoneOtp(phoneNumber)
@@ -136,7 +146,6 @@ class ConfirmRegisterFragment : BaseFragment<FragmentConfirmRegisterBinding>() {
         binding.otp.addTextChangedListener(errorWatcher)
         binding.registerBtn.setOnClickListener {
             hideKeyboard()
-            binding.loaderView.loaderOverlay.show()
             viewModel.verifyOtp(binding.otp.text.toString())
         }
         binding.resendOtpBtn.setOnClickListener {
@@ -167,13 +176,11 @@ class ConfirmRegisterFragment : BaseFragment<FragmentConfirmRegisterBinding>() {
     private val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         override fun onVerificationCompleted(credential: PhoneAuthCredential) {
             logD("onVerificationCompleted: Auto verification completed")
-            binding.loaderView.loaderOverlay.show()
             viewModel.signInWithPhoneCredential(credential)
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
             logE("onVerificationFailed: ${e.message}")
-            binding.loaderView.loaderOverlay.hide()
             //TODO("Implement different exceptions")
             //some error occurred, return the user to previous page
             //FirebaseTooManyRequestsException & FirebaseAuthInvalidCredentialsException

@@ -19,10 +19,12 @@ import com.gigaworks.tech.bloodbank.ui.getdetails.viewmodels.GetDetailsViewModel
 import com.gigaworks.tech.bloodbank.util.*
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
+@AndroidEntryPoint
 class BasicDetailsFragment : BaseFragment<FragmentBasicDetailsBinding>() {
     private val viewModel by activityViewModels<GetDetailsViewModel>()
     private val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
