@@ -30,7 +30,10 @@ class UserRepository @Inject constructor(
                     printLogD(this.javaClass.simpleName, "getUser: ${networkResponse.message}")
                     safeCacheCall { cache.getUserById(uid).toDomain() }
                 } else {
-                    printLogE(this.javaClass.simpleName, "getUser: ${networkResponse.message}")
+                    printLogE(
+                        this.javaClass.simpleName,
+                        "getUser: code:${networkResponse.errorCode} message:${networkResponse.message}"
+                    )
                     Resource.Failure(
                         networkResponse.isNetworkError,
                         networkResponse.errorCode,
@@ -49,8 +52,11 @@ class UserRepository @Inject constructor(
                 Resource.Success(networkResponse.response.toDomain())
             }
             is Resource.Failure -> {
-                if (networkResponse.isNetworkError) {
-                    printLogE(this.javaClass.simpleName, "saveUser: ${networkResponse.message}")
+                if (!networkResponse.isNetworkError) {
+                    printLogE(
+                        this.javaClass.simpleName,
+                        "saveUser: code:${networkResponse.errorCode} message:${networkResponse.message}"
+                    )
                 }
                 Resource.Failure(
                     networkResponse.isNetworkError,

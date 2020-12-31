@@ -22,6 +22,7 @@ import com.gigaworks.tech.bloodbank.ui.login.fragments.LoginConfirmFragment
 import com.gigaworks.tech.bloodbank.ui.register.viewmodels.RegisterViewModel
 import com.gigaworks.tech.bloodbank.util.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -116,20 +117,31 @@ class ConfirmRegisterFragment : BaseFragment<FragmentConfirmRegisterBinding>() {
                     })
                 }
                 is Resource.Failure -> {
-                    logD("userObserver: ${it.message}")
-                    if (!it.isNetworkError && it.errorCode != 404) {
-                        //todo - show and error before finishing the activity
-                        logD("userObserve: Failed to connect to server. code: ${it.errorCode}")
-                        firebaseAuth.signOut()
-                        requireActivity().finish()
-                    } else {
-                        val bundle = bundleOf(
-                            SetNameFragment.PHONE_NUMBER to phoneNumber
-                        )
-                        findNavController().navigate(
-                            R.id.action_confirmRegisterFragment_to_get_details_navigation,
-                            bundle
-                        )
+                    when {
+                        it.isNetworkError -> {
+                            //Error connecting to network
+                            Snackbar.make(
+                                binding.root,
+                                "Please check the internet connection",
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+                        }
+                        it.errorCode == 404 -> {
+                            //Got 404 from the server. Add user info to server.
+                            val bundle = bundleOf(
+                                SetNameFragment.PHONE_NUMBER to phoneNumber
+                            )
+                            findNavController().navigate(
+                                R.id.action_confirmRegisterFragment_to_get_details_navigation,
+                                bundle
+                            )
+                        }
+                        else -> {
+                            //Probably some error on the server. Prompt the user to try again later
+                            //TODO("Show and error before finishing the activity")
+                            firebaseAuth.signOut()
+                            requireActivity().finish()
+                        }
                     }
                 }
             }

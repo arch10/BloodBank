@@ -9,21 +9,22 @@
     <item
         android:id="@+id/navigation_recent"
         android:icon="@drawable/ic_bell"
-        android:title="Recent" />
+        android:title="@string/title_recent" />
 
     <item
-        android:id="@+id/navigation_add"
+        android:id="@+id/navigation_new_request"
         android:icon="@drawable/ic_plus_square"
-        android:title="Add" />
+        android:title="@string/title_new_request"
+        android:onClick="add"/>
 
     <item
         android:id="@+id/navigation_nearby"
         android:icon="@drawable/ic_map"
-        android:title="BloodBanks" />
+        android:title="@string/title_nearby" />
 
     <item
         android:id="@+id/navigation_more"
         android:icon="@drawable/ic_more"
-        android:title="More" />
+        android:title="@string/title_more" />
 
 </menu>

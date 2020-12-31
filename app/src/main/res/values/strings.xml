@@ -38,6 +38,8 @@
     <string name="send_otp_illustration">Send Otp Illustration</string>
     <string name="illustration">Illustration</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_recent">Recent</string>
+    <string name="title_nearby">Nearby</string>
+    <string name="title_new_request">New Request</string>
+    <string name="title_more">More</string>
 </resources>

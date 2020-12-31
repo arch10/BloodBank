@@ -59,6 +59,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-perf-ktx'
+    implementation 'com.google.firebase:firebase-storage-ktx'
 
     def navVersion = "2.3.2"
     implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"

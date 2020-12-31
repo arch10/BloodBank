@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -17,7 +18,16 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|enterAlways"/>
+            app:layout_scrollFlags="scroll|enterAlways">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/default_profile"
+                app:shapeAppearanceOverlay="@style/Widget.BloodBank.ShapeAppearanceOverlay"/>
+        </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -29,7 +39,6 @@
         android:layout_marginBottom="@dimen/space_xxl"
         android:background="@drawable/bottom_nav_background"
         app:labelVisibilityMode="unlabeled"
-        android:elevation="8dp"
         android:layout_gravity="bottom|center"
         app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         app:menu="@menu/bottom_nav_menu" />
@@ -41,6 +50,6 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        app:navGraph="@navigation/mobile_navigation" />
+        app:navGraph="@navigation/home_navigation" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

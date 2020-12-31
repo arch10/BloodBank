@@ -50,14 +50,14 @@ class LocationFragment : BaseFragment<FragmentRegisterLocationBinding>() {
                 }
                 is Resource.Failure -> {
                     if(it.isNetworkError) {
-                        logD("userObserve: ${it.message}")
+                        //Error connecting to network
                         Snackbar.make(
                             binding.root,
                             "Please check the internet connection",
                             Snackbar.LENGTH_SHORT
                         ).show()
                     } else {
-                        logE("userObserve: ${it.message}")
+                        //Probably some error on the server. Prompt the user to try again later
                         Snackbar.make(
                             binding.root,
                             "Cannot save user details. Try again later",

@@ -92,6 +92,10 @@
         <item name="endIconDrawable">@drawable/menu_end_icon</item>
         <item name="errorEnabled">true</item>
     </style>
+
+    <style name="Widget.BloodBank.ShapeAppearanceOverlay" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
     <!--************* -->
 
     <!-- Text Styles -->
