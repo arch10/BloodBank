@@ -9,6 +9,8 @@ import com.gigaworks.tech.bloodbank.network.Resource
 import com.gigaworks.tech.bloodbank.network.response.toEntity
 import com.gigaworks.tech.bloodbank.network.safeApiCall
 import com.gigaworks.tech.bloodbank.network.service.UserService
+import com.gigaworks.tech.bloodbank.util.printLogD
+import com.gigaworks.tech.bloodbank.util.printLogE
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
@@ -25,8 +27,10 @@ class UserRepository @Inject constructor(
                 //check if HTTP 404 - if yes return the same Failure
                 //else try to get the user from cache
                 return if (networkResponse.isNetworkError) {
+                    printLogD(this.javaClass.simpleName, "getUser: ${networkResponse.message}")
                     safeCacheCall { cache.getUserById(uid).toDomain() }
                 } else {
+                    printLogE(this.javaClass.simpleName, "getUser: ${networkResponse.message}")
                     Resource.Failure(
                         networkResponse.isNetworkError,
                         networkResponse.errorCode,
@@ -45,6 +49,9 @@ class UserRepository @Inject constructor(
                 Resource.Success(networkResponse.response.toDomain())
             }
             is Resource.Failure -> {
+                if (networkResponse.isNetworkError) {
+                    printLogE(this.javaClass.simpleName, "saveUser: ${networkResponse.message}")
+                }
                 Resource.Failure(
                     networkResponse.isNetworkError,
                     networkResponse.errorCode,

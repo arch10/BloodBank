@@ -117,13 +117,20 @@ class ConfirmRegisterFragment : BaseFragment<FragmentConfirmRegisterBinding>() {
                 }
                 is Resource.Failure -> {
                     logD("userObserver: ${it.message}")
-                    val bundle = bundleOf(
-                        SetNameFragment.PHONE_NUMBER to phoneNumber
-                    )
-                    findNavController().navigate(
-                        R.id.action_confirmRegisterFragment_to_get_details_navigation,
-                        bundle
-                    )
+                    if (!it.isNetworkError && it.errorCode != 404) {
+                        //todo - show and error before finishing the activity
+                        logD("userObserve: Failed to connect to server. code: ${it.errorCode}")
+                        firebaseAuth.signOut()
+                        requireActivity().finish()
+                    } else {
+                        val bundle = bundleOf(
+                            SetNameFragment.PHONE_NUMBER to phoneNumber
+                        )
+                        findNavController().navigate(
+                            R.id.action_confirmRegisterFragment_to_get_details_navigation,
+                            bundle
+                        )
+                    }
                 }
             }
         })

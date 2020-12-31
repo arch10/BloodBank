@@ -49,12 +49,21 @@ class LocationFragment : BaseFragment<FragmentRegisterLocationBinding>() {
                     })
                 }
                 is Resource.Failure -> {
-                    logE("userObserve: ${it.message}")
-                    Snackbar.make(
-                        binding.root,
-                        "Cannot save user details. Try again later",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
+                    if(it.isNetworkError) {
+                        logD("userObserve: ${it.message}")
+                        Snackbar.make(
+                            binding.root,
+                            "Please check the internet connection",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        logE("userObserve: ${it.message}")
+                        Snackbar.make(
+                            binding.root,
+                            "Cannot save user details. Try again later",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
         })
