@@ -21,36 +21,35 @@ import com.google.firebase.auth.FirebaseAuth
 abstract class BaseActivity<B : ViewBinding> : AppCompatActivity() {
     private var _binding: B? = null
     protected val binding get() = _binding!!
-
     private var shouldAddFirebaseListener = false
-
-    private val firebaseAuth: FirebaseAuth by lazy {
+    protected val firebaseAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }
-
     private val authChangeListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser != null) {
             //Go to home activity
             logD("authChangeListener: User ${firebaseUser.uid} logged in")
-            if(this !is HomeActivity) {
-                startActivity(Intent(this, HomeActivity::class.java))
+            if (this !is HomeActivity) {
+                startActivity(Intent(this, HomeActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                })
                 finish()
             }
         } else {
             logD("authChangeListener: User not logged in")
-            if(this !is MainActivity) {
-                startActivity(Intent(this, MainActivity::class.java))
+            if (this !is MainActivity) {
+                startActivity(Intent(this, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                })
                 finish()
             }
         }
     }
 
-    protected fun addFirebaseListener(shouldAdd: Boolean = false) {
-        this.shouldAddFirebaseListener = shouldAdd
-        if(shouldAdd) {
-            firebaseAuth.addAuthStateListener(authChangeListener)
-        }
+    protected fun addFirebaseListener() {
+        this.shouldAddFirebaseListener = true
+        firebaseAuth.addAuthStateListener(authChangeListener)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,7 +64,7 @@ abstract class BaseActivity<B : ViewBinding> : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-        if(shouldAddFirebaseListener) {
+        if (shouldAddFirebaseListener) {
             firebaseAuth.removeAuthStateListener(authChangeListener)
         }
     }

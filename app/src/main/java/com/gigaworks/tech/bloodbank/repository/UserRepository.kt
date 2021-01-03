@@ -26,7 +26,7 @@ class UserRepository @Inject constructor(
             is Resource.Failure -> {
                 //check if HTTP 404 - if yes return the same Failure
                 //else try to get the user from cache
-                return if (networkResponse.isNetworkError) {
+                return if (networkResponse.isNetworkError || networkResponse.errorCode != 404) {
                     printLogD(this.javaClass.simpleName, "getUser: ${networkResponse.message}")
                     safeCacheCall { cache.getUserById(uid).toDomain() }
                 } else {
@@ -39,6 +39,32 @@ class UserRepository @Inject constructor(
                         networkResponse.errorCode,
                         networkResponse.message
                     )
+                }
+            }
+        }
+    }
+
+    suspend fun getUserCache(token: String, uid: String): Resource<User> {
+        return when (val cacheResponse = safeCacheCall { cache.getUserById(uid).toDomain() }) {
+            is Resource.Success -> {
+                cacheResponse
+            }
+            is Resource.Failure -> {
+                //Failed to get user from local cache
+                //Get user from Network and cache it
+                return when (val networkResponse =
+                    safeApiCall { network.getUser(token).toEntity() }) {
+                    is Resource.Success -> {
+                        cache.insertUser(networkResponse.response)
+                        Resource.Success(networkResponse.response.toDomain())
+                    }
+                    is Resource.Failure -> {
+                        printLogE(
+                            this.javaClass.simpleName,
+                            "getUser: code:${networkResponse.errorCode} message:${networkResponse.message}"
+                        )
+                        networkResponse
+                    }
                 }
             }
         }
@@ -65,5 +91,9 @@ class UserRepository @Inject constructor(
                 )
             }
         }
+    }
+
+    suspend fun removeLocalCache() {
+        cache.deleteTable()
     }
 }

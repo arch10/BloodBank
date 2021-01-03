@@ -27,5 +27,6 @@
         android:id="@+id/navigation_more"
         android:name="com.gigaworks.tech.bloodbank.ui.home.fragments.MoreFragment"
         android:label="@string/title_more"
-        tools:layout="@layout/fragment_more" />
+        tools:layout="@layout/fragment_more" >
+    </fragment>
 </navigation>

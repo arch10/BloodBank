@@ -1,5 +1,6 @@
 package com.gigaworks.tech.bloodbank.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -11,6 +12,8 @@ import com.bumptech.glide.Glide
 import com.gigaworks.tech.bloodbank.R
 import com.gigaworks.tech.bloodbank.databinding.ActivityHomeBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseActivity
+import com.gigaworks.tech.bloodbank.ui.home.fragments.BottomSheetDialog
+import com.gigaworks.tech.bloodbank.ui.profile.ProfileActivity
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -35,11 +38,17 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        addFirebaseListener(true)
+        addFirebaseListener()
+
+        binding.dp.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
+        }
+
     }
 
     fun add(item: MenuItem) {
-        Snackbar.make(binding.root, "Add", Snackbar.LENGTH_SHORT).setAnchorView(binding.navView).show()
+//        Snackbar.make(binding.root, "Add", Snackbar.LENGTH_SHORT).setAnchorView(binding.navView).show()
+        BottomSheetDialog().show(supportFragmentManager, "eee")
     }
 
     fun setProfilePic(id: Int) {

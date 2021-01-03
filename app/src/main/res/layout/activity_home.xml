@@ -21,18 +21,21 @@
             app:layout_scrollFlags="scroll|enterAlways">
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_gravity="end"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/default_profile"
+                android:padding="2dp"
+                app:strokeWidth="2dp"
+                app:strokeColor="?attr/colorTextDisabled"
+                android:layout_marginEnd="12dp"
+                app:srcCompat="@drawable/default_profile"
                 app:shapeAppearanceOverlay="@style/Widget.BloodBank.ShapeAppearanceOverlay"/>
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
-        android:layout_width="340dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/space_l"
         android:layout_marginRight="@dimen/space_l"

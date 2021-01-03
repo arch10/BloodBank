@@ -42,4 +42,18 @@
     <string name="title_nearby">Nearby</string>
     <string name="title_new_request">New Request</string>
     <string name="title_more">More</string>
+    <string name="profile">Profile</string>
+    <string name="night_mode">Night Mode</string>
+    <string name="night_mode_icon">Night mode icon</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="share_the_app">Share the app</string>
+    <string name="rate_the_app">Rate the app</string>
+    <string name="report_a_bug">Report a bug</string>
+    <string name="contact_us">Contact us</string>
+    <string name="edit">Edit</string>
+    <string name="age">Age</string>
+    <string name="name">Name</string>
+    <string name="change_profile_picture">Change profile picture</string>
+    <string name="sign_out">Sign Out</string>
 </resources>

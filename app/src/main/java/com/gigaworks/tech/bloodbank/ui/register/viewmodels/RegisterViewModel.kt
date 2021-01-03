@@ -82,7 +82,7 @@ class RegisterViewModel @ViewModelInject constructor(
 
     private fun checkUserInfo(token: String, uid: String) {
         viewModelScope.launch {
-            _user.value = userRepository.getUser(bearer(token), uid)
+            _user.value = userRepository.getUserCache(bearer(token), uid)
             _loading.value = false
         }
     }

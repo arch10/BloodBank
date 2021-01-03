@@ -1,18 +1,484 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="8dp"
     tools:context=".ui.home.fragments.MoreFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="More Fragment"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardElevation="2dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profileIcon"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="@dimen/space_l"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/Widget.BloodBank.ShapeAppearanceOverlay"
+                    app:srcCompat="@drawable/default_profile" />
+
+                <TextView
+                    android:id="@+id/profileText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:layout_toEndOf="@+id/profileIcon"
+                    android:text="@string/profile"
+                    android:textAppearance="@style/TextAppearance.BloodBank.Subtitle1"
+                    android:textColor="?attr/colorTextPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/profileIcon"
+                    app:layout_constraintStart_toEndOf="@+id/profileIcon"
+                    app:layout_constraintTop_toTopOf="@+id/profileIcon" />
+
+                <ImageView
+                    android:id="@+id/profileNext"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:contentDescription="@string/next"
+                    android:src="@drawable/chevron_right"
+                    app:layout_constraintBottom_toBottomOf="@+id/profileText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/profileText"
+                    app:tint="?attr/colorTextDisabled" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card1">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+
+                <ImageView
+                    android:id="@+id/nightIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:contentDescription="@string/night_mode_icon"
+                    android:padding="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/moon"
+                    app:tint="?attr/colorTextPrimary" />
+
+                <TextView
+                    android:id="@+id/nightText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:layout_toEndOf="@+id/nightIcon"
+                    android:text="@string/night_mode"
+                    android:textAppearance="@style/TextAppearance.BloodBank.Subtitle1"
+                    android:textColor="?attr/colorTextPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/nightIcon"
+                    app:layout_constraintStart_toEndOf="@+id/nightIcon"
+                    app:layout_constraintTop_toTopOf="@+id/nightIcon" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/nightSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:checked="true"
+                    app:layout_constraintBottom_toBottomOf="@+id/nightText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/nightText" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+
+                <ImageView
+                    android:id="@+id/settingIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:contentDescription="@string/night_mode_icon"
+                    android:padding="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/settings"
+                    app:tint="?attr/colorTextPrimary" />
+
+                <TextView
+                    android:id="@+id/settingText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:layout_toEndOf="@+id/settingIcon"
+                    android:text="@string/settings"
+                    android:textAppearance="@style/TextAppearance.BloodBank.Subtitle1"
+                    android:textColor="?attr/colorTextPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/settingIcon"
+                    app:layout_constraintStart_toEndOf="@+id/settingIcon"
+                    app:layout_constraintTop_toTopOf="@+id/settingIcon" />
+
+                <ImageView
+                    android:id="@+id/settingNext"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:contentDescription="@string/next"
+                    android:src="@drawable/chevron_right"
+                    app:layout_constraintBottom_toBottomOf="@+id/settingText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/settingText"
+                    app:tint="?attr/colorTextDisabled" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card3">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+
+                <ImageView
+                    android:id="@+id/aboutIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/space_l"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/info"
+                    app:tint="?attr/colorTextPrimary" />
+
+                <TextView
+                    android:id="@+id/infoText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:layout_toEndOf="@+id/aboutIcon"
+                    android:text="@string/about"
+                    android:textAppearance="@style/TextAppearance.BloodBank.Subtitle1"
+                    android:textColor="?attr/colorTextPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/aboutIcon"
+                    app:layout_constraintStart_toEndOf="@+id/aboutIcon"
+                    app:layout_constraintTop_toTopOf="@+id/aboutIcon" />
+
+                <ImageView
+                    android:id="@+id/infoNext"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:contentDescription="@string/next"
+                    android:src="@drawable/chevron_right"
+                    app:layout_constraintBottom_toBottomOf="@+id/infoText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/infoText"
+                    app:tint="?attr/colorTextDisabled" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card4">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+
+                <ImageView
+                    android:id="@+id/shareIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:contentDescription="@string/night_mode_icon"
+                    android:padding="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/share"
+                    app:tint="?attr/colorTextPrimary" />
+
+                <TextView
+                    android:id="@+id/shareText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:layout_toEndOf="@+id/shareIcon"
+                    android:text="@string/share_the_app"
+                    android:textAppearance="@style/TextAppearance.BloodBank.Subtitle1"
+                    android:textColor="?attr/colorTextPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/shareIcon"
+                    app:layout_constraintStart_toEndOf="@+id/shareIcon"
+                    app:layout_constraintTop_toTopOf="@+id/shareIcon" />
+
+                <ImageView
+                    android:id="@+id/shareNext"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:contentDescription="@string/next"
+                    android:src="@drawable/chevron_right"
+                    app:layout_constraintBottom_toBottomOf="@+id/shareText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/shareText"
+                    app:tint="?attr/colorTextDisabled" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card5">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+
+                <ImageView
+                    android:id="@+id/rateIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:contentDescription="@string/night_mode_icon"
+                    android:padding="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/star"
+                    app:tint="?attr/colorTextPrimary" />
+
+                <TextView
+                    android:id="@+id/rateText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:layout_toEndOf="@+id/rateIcon"
+                    android:text="@string/rate_the_app"
+                    android:textAppearance="@style/TextAppearance.BloodBank.Subtitle1"
+                    android:textColor="?attr/colorTextPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/rateIcon"
+                    app:layout_constraintStart_toEndOf="@+id/rateIcon"
+                    app:layout_constraintTop_toTopOf="@+id/rateIcon" />
+
+                <ImageView
+                    android:id="@+id/rateNext"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:contentDescription="@string/next"
+                    android:src="@drawable/chevron_right"
+                    app:layout_constraintBottom_toBottomOf="@+id/rateText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/rateText"
+                    app:tint="?attr/colorTextDisabled" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card6">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+
+                <ImageView
+                    android:id="@+id/bugIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:contentDescription="@string/night_mode_icon"
+                    android:padding="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/bug"
+                    app:tint="?attr/colorTextPrimary" />
+
+                <TextView
+                    android:id="@+id/bugText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:layout_toEndOf="@+id/bugIcon"
+                    android:text="@string/report_a_bug"
+                    android:textAppearance="@style/TextAppearance.BloodBank.Subtitle1"
+                    android:textColor="?attr/colorTextPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/bugIcon"
+                    app:layout_constraintStart_toEndOf="@+id/bugIcon"
+                    app:layout_constraintTop_toTopOf="@+id/bugIcon" />
+
+                <ImageView
+                    android:id="@+id/bugNext"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:contentDescription="@string/next"
+                    android:src="@drawable/chevron_right"
+                    app:layout_constraintBottom_toBottomOf="@+id/bugText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/bugText"
+                    app:tint="?attr/colorTextDisabled" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card7">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+
+                <ImageView
+                    android:id="@+id/contactIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:contentDescription="@string/night_mode_icon"
+                    android:padding="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/phone_call"
+                    app:tint="?attr/colorTextPrimary" />
+
+                <TextView
+                    android:id="@+id/contactText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:layout_toEndOf="@+id/contactIcon"
+                    android:text="@string/contact_us"
+                    android:textAppearance="@style/TextAppearance.BloodBank.Subtitle1"
+                    android:textColor="?attr/colorTextPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/contactIcon"
+                    app:layout_constraintStart_toEndOf="@+id/contactIcon"
+                    app:layout_constraintTop_toTopOf="@+id/contactIcon" />
+
+                <ImageView
+                    android:id="@+id/contactNext"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:contentDescription="@string/next"
+                    android:src="@drawable/chevron_right"
+                    app:layout_constraintBottom_toBottomOf="@+id/contactText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/contactText"
+                    app:tint="?attr/colorTextDisabled" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

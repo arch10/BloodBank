@@ -16,10 +16,7 @@ class RecentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_recent, container, false)
-        val signOutBtn: Button = root.findViewById(R.id.signOutBtn)
-        signOutBtn.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-        }
+
         return root
     }
 }

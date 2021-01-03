@@ -7,6 +7,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'com.google.firebase.crashlytics'
     id 'com.google.firebase.firebase-perf'
+    id "androidx.navigation.safeargs.kotlin"
 }
 
 android {
@@ -49,8 +50,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.navigation:navigation-fragment:2.3.2'
-    implementation 'androidx.navigation:navigation-ui:2.3.2'
 
     def firebaseBomVersion = "26.2.0"
     implementation platform("com.google.firebase:firebase-bom:$firebaseBomVersion")
@@ -94,4 +93,7 @@ dependencies {
 
     def lottieVersion = "3.5.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    def imagePickerVersion = "1.8"
+    implementation "com.github.dhaval2404:imagepicker:$imagePickerVersion"
 }

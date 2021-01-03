@@ -13,7 +13,6 @@ suspend fun <T> safeCacheCall(
         try {
             Resource.Success(cacheCall.invoke())
         } catch (e: Exception) {
-            printLogD(this.javaClass.simpleName, "safeCacheCall: ${e.message}")
             Resource.Failure(false, null, e.message)
         }
     }
