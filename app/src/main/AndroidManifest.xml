@@ -27,6 +27,8 @@
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.settings.SettingsActivity"
             android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.newrequest.NewRequestActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.splash.SplashActivity"
             android:theme="@style/ColdStart">
             <intent-filter>

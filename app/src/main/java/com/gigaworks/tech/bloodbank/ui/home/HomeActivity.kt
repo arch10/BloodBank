@@ -13,10 +13,8 @@ import com.bumptech.glide.Glide
 import com.gigaworks.tech.bloodbank.R
 import com.gigaworks.tech.bloodbank.databinding.ActivityHomeBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseActivity
-import com.gigaworks.tech.bloodbank.ui.home.fragments.BottomSheetDialog
+import com.gigaworks.tech.bloodbank.ui.newrequest.NewRequestActivity
 import com.gigaworks.tech.bloodbank.ui.profile.ProfileActivity
-import com.gigaworks.tech.bloodbank.util.logD
-import com.google.android.material.snackbar.Snackbar
 
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
@@ -49,7 +47,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     }
 
     fun add(item: MenuItem) {
-        BottomSheetDialog().show(supportFragmentManager, "eee")
+        startActivity(Intent(this, NewRequestActivity::class.java))
     }
 
     override fun onStart() {
