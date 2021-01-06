@@ -1,6 +1,7 @@
 package com.gigaworks.tech.bloodbank.ui.home
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -14,6 +15,7 @@ import com.gigaworks.tech.bloodbank.databinding.ActivityHomeBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseActivity
 import com.gigaworks.tech.bloodbank.ui.home.fragments.BottomSheetDialog
 import com.gigaworks.tech.bloodbank.ui.profile.ProfileActivity
+import com.gigaworks.tech.bloodbank.util.logD
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -47,13 +49,17 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     }
 
     fun add(item: MenuItem) {
-//        Snackbar.make(binding.root, "Add", Snackbar.LENGTH_SHORT).setAnchorView(binding.navView).show()
         BottomSheetDialog().show(supportFragmentManager, "eee")
     }
 
-    fun setProfilePic(id: Int) {
+    override fun onStart() {
+        super.onStart()
+        setProfilePic(firebaseAuth.currentUser?.photoUrl)
+    }
+
+    private fun setProfilePic(uri: Uri?) {
         Glide.with(this)
-            .load(id)
+            .load(uri)
             .placeholder(R.drawable.default_profile)
             .into(binding.dp)
     }

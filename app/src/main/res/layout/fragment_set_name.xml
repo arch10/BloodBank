@@ -98,7 +98,7 @@
         android:id="@+id/nextBtn"
         android:layout_width="0dp"
         android:layout_height="72dp"
-        android:layout_marginTop="@dimen/space_l"
+        android:layout_marginTop="@dimen/space_xl"
         android:enabled="false"
         android:text="@string/next"
         app:layout_constraintEnd_toEndOf="@+id/guideline_end"

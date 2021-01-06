@@ -56,14 +56,14 @@ class ConfirmRegisterFragment : BaseFragment<FragmentConfirmRegisterBinding>() {
     private val viewModel by viewModels<RegisterViewModel>()
     private val dialogBuilder: MaterialAlertDialogBuilder by lazy {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Discard OTP verification ?")
-            .setMessage("Do you want to discard the OTP verification ?")
+            .setTitle(getString(R.string.discard_otp_title))
+            .setMessage(getString(R.string.discard_otp_subtitle))
             .setCancelable(false)
-            .setPositiveButton("Discard") { dialog, _ ->
+            .setPositiveButton(getString(R.string.discard)) { dialog, _ ->
                 findNavController().navigateUp()
                 dialog.dismiss()
             }
-            .setNegativeButton("Cancel") { dialog, _ ->
+            .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                 dialog.dismiss()
             }
     }

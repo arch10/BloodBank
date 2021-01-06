@@ -1,5 +1,6 @@
 package com.gigaworks.tech.bloodbank.ui.profile.viewmodels
 
+import android.net.Uri
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,15 +10,18 @@ import com.gigaworks.tech.bloodbank.domain.model.User
 import com.gigaworks.tech.bloodbank.network.Resource
 import com.gigaworks.tech.bloodbank.network.bearer
 import com.gigaworks.tech.bloodbank.repository.UserRepository
+import com.gigaworks.tech.bloodbank.util.logD
 import com.gigaworks.tech.bloodbank.util.logE
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.launch
 
 class ProfileViewModel @ViewModelInject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
-
     private val _user = MutableLiveData<Resource<User>>()
     val user: LiveData<Resource<User>>
         get() = _user
@@ -59,11 +63,53 @@ class ProfileViewModel @ViewModelInject constructor(
         }
     }
 
+    fun saveProfilePicToFirebaseStorage(fileUri: Uri, ext: String) {
+        _loading.value = true
+        val uid = firebaseAuth.currentUser?.uid
+        val firebaseStorage = Firebase.storage
+        val storageRef = firebaseStorage.reference
+        val dpRefPath = "profile_pic/${uid}.${ext}"
+        val dpRef = storageRef.child(dpRefPath)
+        dpRef.putFile(fileUri).addOnCompleteListener { uploadTask ->
+            if (uploadTask.isSuccessful) {
+                dpRef.downloadUrl.addOnCompleteListener { urlTask ->
+                    if (urlTask.isSuccessful) {
+                        urlTask.result?.let {
+                            logD("saveProfilePicToFirebaseStorage: Saved image to ${dpRef.path}")
+                            saveProfileToFirebaseUser(it)
+                        }
+                    } else {
+                        _loading.value = false
+                        logD("saveProfilePicToFirebaseStorage: Failed to get download URL. ${urlTask.exception?.message}")
+                    }
+                }
+            } else {
+                _loading.value = false
+                logD("saveProfilePicToFirebaseStorage: Failed to upload file. ${uploadTask.exception?.message}")
+            }
+        }
+    }
+
+    private fun saveProfileToFirebaseUser(uri: Uri) {
+        val currentUser = firebaseAuth.currentUser
+        val profileUpdates = userProfileChangeRequest {
+            photoUri = uri
+        }
+        currentUser?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                _loading.value = false
+                logD("saveProfileToFirebaseUser: Profile updated")
+            } else {
+                _loading.value = false
+                logD("saveProfileToFirebaseUser: Failed to update profile. ${task.exception?.message}")
+            }
+        }
+    }
+
     fun signOut() {
         viewModelScope.launch {
             userRepository.removeLocalCache()
             firebaseAuth.signOut()
         }
     }
-
 }

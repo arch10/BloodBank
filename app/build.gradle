@@ -50,6 +50,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.browser:browser:1.3.0"
 
     def firebaseBomVersion = "26.2.0"
     implementation platform("com.google.firebase:firebase-bom:$firebaseBomVersion")

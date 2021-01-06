@@ -1,15 +1,23 @@
 package com.gigaworks.tech.bloodbank.ui.profile
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
+import com.bumptech.glide.Glide
+import com.gigaworks.tech.bloodbank.R
 import com.gigaworks.tech.bloodbank.databinding.ActivityProfileBinding
 import com.gigaworks.tech.bloodbank.network.Resource
 import com.gigaworks.tech.bloodbank.ui.base.BaseActivity
 import com.gigaworks.tech.bloodbank.ui.profile.viewmodels.ProfileViewModel
 import com.gigaworks.tech.bloodbank.util.logD
 import com.gigaworks.tech.bloodbank.util.visible
+import com.github.dhaval2404.imagepicker.ImagePicker
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
@@ -57,6 +65,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
                 }
             }
         })
+
     }
 
     private fun setUpView() {
@@ -67,13 +76,71 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
         }
 
         binding.changePic.setOnClickListener {
+            val sharedStorage = getExternalFilesDir(null)
+            sharedStorage?.let {
+                ImagePicker.with(this)
+                    .galleryOnly()
+                    .cropSquare()
+                    .compress(1024)
+                    .galleryMimeTypes(
+                        mimeTypes = arrayOf(
+                            "image/png",
+                            "image/jpg",
+                            "image/jpeg"
+                        )
+                    )
+                    .saveDir(it)
+                    .start(IMAGE_PICKER_REQUEST_CODE)
+            }
+        }
 
+        setProfilePic(firebaseAuth.currentUser?.photoUrl)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == IMAGE_PICKER_REQUEST_CODE) {
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    val fileUri = data?.data
+                    fileUri?.let {
+                        binding.dp.setImageURI(fileUri)
+                        viewModel.saveProfilePicToFirebaseStorage(fileUri, "jpeg")
+                    }
+                    setProfilePic(fileUri)
+                }
+                ImagePicker.RESULT_ERROR -> {
+                    Snackbar.make(binding.root, ImagePicker.getError(data), Snackbar.LENGTH_SHORT)
+                        .show()
+                }
+                else -> {
+                    //Selecting Task got cancelled.
+                    logD("onActivityResult: Image selection cancelled")
+                }
+            }
         }
     }
 
+    override fun onBackPressed() {
+        handleBackPress()
+    }
+
     private fun handleBackPress() {
-        finish()
+        if(viewModel.loading.value == false) {
+            finish()
+        }
+    }
+
+    private fun setProfilePic(uri: Uri?) {
+        Glide.with(this)
+            .load(uri)
+            .placeholder(R.drawable.default_profile)
+            .into(binding.dp)
     }
 
     override fun getViewBinding(inflater: LayoutInflater) = ActivityProfileBinding.inflate(inflater)
+
+    companion object {
+        const val IMAGE_PICKER_REQUEST_CODE = 654
+    }
 }

@@ -94,7 +94,7 @@
         android:id="@+id/doneBtn"
         android:layout_width="0dp"
         android:layout_height="72dp"
-        android:layout_marginTop="@dimen/space_l"
+        android:layout_marginTop="@dimen/space_xl"
         android:text="@string/done"
         android:enabled="true"
         app:layout_constraintEnd_toEndOf="@+id/guideline_end"

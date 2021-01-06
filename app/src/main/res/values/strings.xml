@@ -56,4 +56,14 @@
     <string name="name">Name</string>
     <string name="change_profile_picture">Change profile picture</string>
     <string name="sign_out">Sign Out</string>
+    <string name="theme">Theme</string>
+    <string name="system_default">System default</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="user_interface">User Interface</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="discard">Discard</string>
+    <string name="discard_otp_title">Discard OTP verification ?</string>
+    <string name="discard_otp_subtitle">Do you want to discard the OTP verification ?</string>
 </resources>
