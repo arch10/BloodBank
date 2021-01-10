@@ -21,18 +21,247 @@
             app:navigationIcon="@drawable/cross"/>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <FrameLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!!"
-            android:layout_gravity="center"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </FrameLayout>
+            <TextView
+                android:id="@+id/introText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/space_xxl"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="?attr/colorSecondary"
+                android:gravity="center"
+                android:text="Create an emergency blood donation request that will notify the nearby donors. Please note that we will be sharing these details with the relevant donors and they might contact you regarding the request."/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/bloodTypeLayout"
+                style="@style/Widget.BloodBank.TextInputLayout.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:hint="@string/blood_type"
+                android:labelFor="@id/bloodType"
+                android:layout_marginTop="@dimen/space_xxl"
+                app:helperText="Blood Type required"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/introText">
+
+                <AutoCompleteTextView
+                    android:id="@+id/bloodType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="1"
+                    android:inputType="textCapWords"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phoneLayout"
+                style="@style/Widget.BloodBank.TextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:hint="@string/phone_number"
+                app:prefixText="+91 "
+                android:layout_marginTop="@dimen/space_l"
+                app:helperText="Number for donors to contact you"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/bloodTypeLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:maxLength="10"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/dobTextLayout"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:background="@drawable/rounded_border"
+                android:gravity="center_vertical"
+                android:hint="Request Expiry"
+                android:layout_marginTop="@dimen/space_l"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="?attr/colorTextSecondary"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/phoneLayout" />
+
+            <TextView
+                android:id="@+id/dobHelperText"
+                android:layout_width="0dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="By when the blood is required"
+                android:textColor="@color/disabledColor"
+                android:textAppearance="?attr/textAppearanceCaption"
+                app:layout_constraintEnd_toEndOf="@+id/dobTextLayout"
+                app:layout_constraintStart_toStartOf="@+id/dobTextLayout"
+                app:layout_constraintTop_toBottomOf="@+id/dobTextLayout" />
+
+            <ImageView
+                android:id="@+id/dobEndIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/calendar"
+                android:layout_marginEnd="16dp"
+                app:tint="?attr/colorTextDisabled"
+                android:contentDescription="@string/calender_image"
+                app:layout_constraintBottom_toBottomOf="@+id/dobTextLayout"
+                app:layout_constraintEnd_toEndOf="@+id/dobTextLayout"
+                app:layout_constraintTop_toTopOf="@+id/dobTextLayout" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/descLayout"
+                style="@style/Widget.BloodBank.TextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Short description (optional)"
+                app:helperText="Describe any details if required"
+                app:counterEnabled="true"
+                app:counterMaxLength="300"
+                android:layout_marginTop="@dimen/space_xxl"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/dobTextLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine|textCapSentences" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/hospitalLayout"
+                style="@style/Widget.BloodBank.TextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:hint="Hospital Name (optional)"
+                app:helperText="Name of the hospital"
+                android:layout_marginTop="@dimen/space_l"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/descLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/hospital"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/cityLayout"
+                style="@style/Widget.BloodBank.TextInputLayout.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:hint="@string/city"
+                android:labelFor="@id/city"
+                app:helperText="City where blood is needed"
+                android:layout_marginTop="@dimen/space_l"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/hospitalLayout">
+
+                <AutoCompleteTextView
+                    android:id="@+id/city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/stateLayout"
+                style="@style/Widget.BloodBank.TextInputLayout.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:hint="@string/state"
+                android:labelFor="@id/state"
+                android:enabled="false"
+                app:helperText="State where blood is needed"
+                android:layout_marginTop="@dimen/space_l"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/cityLayout">
+
+                <AutoCompleteTextView
+                    android:id="@+id/state"
+                    android:text="Maharashtra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/agreeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintTop_toBottomOf="@id/stateLayout"
+                android:layout_marginTop="@dimen/space_xxxxl"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:textColor="?attr/colorSecondary"
+                android:gravity="center"
+                android:text="By clicking on submit, you are allowing us to share these details along with your name and profile picture with the relevant donors so that they can reach out to you easily."/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/submitBtn"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="@dimen/space_xl"
+                android:enabled="true"
+                android:text="@string/done"
+                android:layout_marginBottom="@dimen/space_xl"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintStart_toStartOf="@+id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@+id/agreeText" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/space_xxxl" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/space_xxxl" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

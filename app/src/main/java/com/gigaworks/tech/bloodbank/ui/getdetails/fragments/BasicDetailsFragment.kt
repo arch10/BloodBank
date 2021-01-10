@@ -119,7 +119,7 @@ class BasicDetailsFragment : BaseFragment<FragmentBasicDetailsBinding>() {
     private fun showDatePicker() {
         val calender = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
         val calendarConstraint = CalendarConstraints.Builder()
-            .setValidator(DayValidator())
+            .setValidator(DobValidator())
             .setEnd(calender.timeInMillis)
             .build()
         val builder = MaterialDatePicker.Builder
