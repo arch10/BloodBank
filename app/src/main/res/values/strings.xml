@@ -61,6 +61,7 @@
     <string name="light">Light</string>
     <string name="dark">Dark</string>
     <string name="user_interface">User Interface</string>
+    <string name="create">Create</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="discard">Discard</string>

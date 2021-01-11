@@ -1,6 +1,7 @@
 package com.gigaworks.tech.bloodbank.di
 
 import com.gigaworks.tech.bloodbank.BuildConfig.DEBUG
+import com.gigaworks.tech.bloodbank.network.service.RequestService
 import com.gigaworks.tech.bloodbank.network.service.UserService
 import com.gigaworks.tech.bloodbank.util.BASE_URL
 import dagger.Module
@@ -37,6 +38,11 @@ object NetworkModule {
     @Provides
     fun provideUserService(retrofit: Retrofit): UserService {
         return retrofit.create(UserService::class.java)
+    }
+
+    @Provides
+    fun provideRequestService(retrofit: Retrofit): RequestService {
+        return retrofit.create(RequestService::class.java)
     }
 
 }

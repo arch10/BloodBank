@@ -236,7 +236,7 @@
                 android:layout_height="72dp"
                 android:layout_marginTop="@dimen/space_xl"
                 android:enabled="true"
-                android:text="@string/done"
+                android:text="@string/create"
                 android:layout_marginBottom="@dimen/space_xl"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_end"
@@ -262,6 +262,6 @@
 
     </androidx.core.widget.NestedScrollView>
 
-
+    <include android:id="@+id/loaderView" layout="@layout/progress_overlay"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

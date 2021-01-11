@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.gigaworks.tech.bloodbank.domain.model.User
 import com.gigaworks.tech.bloodbank.network.Resource
 import com.gigaworks.tech.bloodbank.network.bearer
+import com.gigaworks.tech.bloodbank.repository.RequestRepository
 import com.gigaworks.tech.bloodbank.repository.UserRepository
 import com.gigaworks.tech.bloodbank.util.logD
 import com.gigaworks.tech.bloodbank.util.logE
@@ -20,7 +21,8 @@ import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.launch
 
 class ProfileViewModel @ViewModelInject constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val requestRepository: RequestRepository
 ) : ViewModel() {
     private val _user = MutableLiveData<Resource<User>>()
     val user: LiveData<Resource<User>>
@@ -109,6 +111,7 @@ class ProfileViewModel @ViewModelInject constructor(
     fun signOut() {
         viewModelScope.launch {
             userRepository.removeLocalCache()
+            requestRepository.removeLocalCache()
             firebaseAuth.signOut()
         }
     }

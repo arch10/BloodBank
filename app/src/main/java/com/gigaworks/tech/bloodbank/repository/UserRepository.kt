@@ -94,6 +94,6 @@ class UserRepository @Inject constructor(
     }
 
     suspend fun removeLocalCache() {
-        cache.deleteTable()
+        safeCacheCall { cache.deleteTable() }
     }
 }

@@ -14,6 +14,8 @@ import com.gigaworks.tech.bloodbank.util.Gender
 import com.gigaworks.tech.bloodbank.util.logD
 import com.gigaworks.tech.bloodbank.util.logE
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import kotlinx.coroutines.launch
 
 class GetDetailsViewModel @ViewModelInject constructor(
@@ -63,7 +65,7 @@ class GetDetailsViewModel @ViewModelInject constructor(
         if(firebaseUser != null) {
             firebaseUser.getIdToken(false).addOnCompleteListener { task->
                 if(task.isSuccessful) {
-                    createUser(task.result.token!!, user)
+                    saveUserName(task.result.token!!, user, firebaseUser)
                 } else {
                     logE("saveUser: ${task.exception?.message}")
                     _loginError.value = "Unknown Error"
@@ -74,6 +76,21 @@ class GetDetailsViewModel @ViewModelInject constructor(
             logE("saveUser: Cannot find firebase user")
             _loading.value = false
             _loginError.value = "Please verify the phone number again"
+        }
+    }
+
+    private fun saveUserName(token: String, user: User, firebaseUser: FirebaseUser) {
+        val profileUpdates = userProfileChangeRequest {
+            displayName = "${user.firstName} ${user.lastName}"
+        }
+        firebaseUser.updateProfile(profileUpdates).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                createUser(token, user)
+            } else {
+                _loading.value = false
+                _loginError.value = "Error occurred while creating user. Please try again later."
+                logE("saveUserName: Failed to update display name. ${task.exception?.message}")
+            }
         }
     }
 
