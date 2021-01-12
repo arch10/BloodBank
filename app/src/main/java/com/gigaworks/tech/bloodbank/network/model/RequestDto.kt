@@ -10,29 +10,29 @@ data class RequestDto(
     @SerializedName("city")
     val city: String,
     @SerializedName("country_code")
-    val countryCode: String,
+    val countryCode: String?,
     @SerializedName("created_on")
-    val createdOn: Long,
+    val createdOn: Long?,
     @SerializedName("creator_dp")
     val creatorDp: String?,
     @SerializedName("creator_name")
-    val creatorName: String,
+    val creatorName: String?,
     @SerializedName("creator_uid")
     val creatorUid: String,
     @SerializedName("desc")
-    val desc: String,
+    val desc: String?,
     @SerializedName("expiry")
     val expiry: Long,
     @SerializedName("hospital")
-    val hospital: String,
+    val hospital: String?,
     @SerializedName("_id")
-    val id: String,
+    val id: String?,
     @SerializedName("phone")
-    val phone: String,
+    val phone: String?,
     @SerializedName("state")
     val state: String,
     @SerializedName("updated_on")
-    val updatedOn: Long
+    val updatedOn: Long?
 )
 
 fun RequestDto.toEntity(): RequestEntity {
@@ -47,7 +47,7 @@ fun RequestDto.toEntity(): RequestEntity {
         desc=desc,
         expiry=expiry,
         hospital=hospital,
-        id=id,
+        id=id?:"1",
         phone=phone,
         state=state,
         updatedOn=updatedOn

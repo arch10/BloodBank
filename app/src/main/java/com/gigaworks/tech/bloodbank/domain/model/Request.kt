@@ -5,18 +5,18 @@ import com.gigaworks.tech.bloodbank.network.model.RequestDto
 data class Request(
     val bloodType: String,
     val city: String,
-    val countryCode: String,
-    val createdOn: Long = System.currentTimeMillis(),
-    val creatorDp: String?,
-    val creatorName: String,
+    val countryCode: String? = null,
+    val createdOn: Long? = null,
+    val creatorDp: String? = null,
+    val creatorName: String? = null,
     val creatorUid: String,
-    val desc: String,
+    val desc: String? = null,
     val expiry: Long,
-    val hospital: String,
-    val id: String,
-    val phone: String,
+    val hospital: String? = null,
+    val id: String? = null,
+    val phone: String? = null,
     val state: String,
-    val updatedOn: Long
+    val updatedOn: Long? = null
 )
 
 fun Request.toDto(): RequestDto {

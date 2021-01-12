@@ -80,18 +80,12 @@ class NewRequestActivity : BaseActivity<ActivityNewRequestBinding>() {
                 val request = Request(
                     bloodType = binding.bloodType.text.toString(),
                     city = binding.city.text.toString(),
-                    countryCode = "+91",
-                    createdOn = System.currentTimeMillis(),
                     creatorDp = firebaseAuth.currentUser?.photoUrl.toString(),
-                    creatorName = firebaseAuth.currentUser?.displayName!!,
                     creatorUid = firebaseAuth.currentUser?.uid!!,
                     desc = binding.desc.text.toString(),
                     expiry = getDate(),
                     hospital = binding.hospital.text.toString(),
-                    id = "-1",
-                    phone = binding.phoneNumber.text.toString(),
-                    state = binding.state.text.toString(),
-                    updatedOn = System.currentTimeMillis()
+                    state = binding.state.text.toString()
                 )
                 viewModel.saveRequest(request)
             }
@@ -148,7 +142,7 @@ class NewRequestActivity : BaseActivity<ActivityNewRequestBinding>() {
     }
 
     private fun isValidForm(): Boolean {
-        return isValidBloodType() && isValidPhoneNumber() && isValidRequestDate() && isValidDesc() && isValidCity() && isValidState()
+        return isValidBloodType() && isValidRequestDate() && isValidDesc() && isValidCity() && isValidState()
     }
 
     private fun isValidBloodType(): Boolean {
@@ -159,17 +153,6 @@ class NewRequestActivity : BaseActivity<ActivityNewRequestBinding>() {
             binding.bloodTypeLayout.showError("Not a valid Blood Type")
         } else {
             binding.bloodTypeLayout.hideError()
-        }
-        return isValid
-    }
-
-    private fun isValidPhoneNumber(): Boolean {
-        val phoneNumber = binding.phoneNumber.text.toString()
-        val isValid = FieldValidation.validatePhoneNumber(phoneNumber)
-        if (!isValid) {
-            binding.phoneLayout.showError(getString(R.string.invalid_phone_number))
-        } else {
-            binding.phoneLayout.hideError()
         }
         return isValid
     }
