@@ -271,7 +271,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
-                android:layout_marginTop="@dimen/space_l"
+                android:layout_marginTop="@dimen/space_m"
                 android:clickable="true"
                 android:focusable="true"
                 app:cardCornerRadius="0dp"
@@ -396,7 +396,7 @@
                 android:id="@+id/signOutCard"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_marginTop="@dimen/space_xl"
+                android:layout_marginTop="@dimen/space_l"
                 android:layout_marginBottom="@dimen/space_xl"
                 android:clickable="true"
                 android:focusable="true"

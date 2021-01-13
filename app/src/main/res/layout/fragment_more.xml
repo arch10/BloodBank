@@ -71,7 +71,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card3"
+            android:id="@+id/card2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -90,7 +90,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="@dimen/space_l"
-                    android:contentDescription="@string/night_mode_icon"
+                    android:contentDescription="@string/settings"
                     android:padding="2dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -130,10 +130,69 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+
+                <ImageView
+                    android:id="@+id/myRequestIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:contentDescription="@string/my_requests"
+                    android:padding="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/file_text"
+                    app:tint="?attr/colorTextPrimary" />
+
+                <TextView
+                    android:id="@+id/myRequestText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/space_l"
+                    android:layout_toEndOf="@+id/myRequestIcon"
+                    android:text="@string/my_requests"
+                    android:textAppearance="@style/TextAppearance.BloodBank.Subtitle1"
+                    android:textColor="?attr/colorTextPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/myRequestIcon"
+                    app:layout_constraintStart_toEndOf="@+id/myRequestIcon"
+                    app:layout_constraintTop_toTopOf="@+id/myRequestIcon" />
+
+                <ImageView
+                    android:id="@+id/myRequestNext"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:contentDescription="@string/next"
+                    android:src="@drawable/chevron_right"
+                    app:layout_constraintBottom_toBottomOf="@+id/myRequestText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/myRequestText"
+                    app:tint="?attr/colorTextDisabled" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/card4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/space_l"
             android:clickable="true"
             android:focusable="true"
             app:cardElevation="2dp"

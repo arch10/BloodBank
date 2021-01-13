@@ -2,15 +2,15 @@
 <resources>
 
     <!-- Primary Shades -->
-    <color name="primaryColor">#FF3E3E</color>
-    <color name="primaryColorDark">#c40016</color>
+    <color name="primaryColor">#ff3355</color>
+    <color name="primaryColorDark">#e50033</color>
 
     <!-- Secondary Shades -->
     <color name="secondaryColor">#3E4685</color>
     <color name="secondaryColorDark">#071f58</color>
 
     <!-- Light Shades -->
-    <color name="backgroundColor">#ffffff</color>
+    <color name="backgroundColor">#ECEDF3</color>
     <color name="surfaceColor">#ffffff</color>
     <color name="errorColor">#E2363F</color>
     <color name="primaryTextColor">#263238</color>

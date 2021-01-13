@@ -2,8 +2,8 @@
 <resources>
 
     <!-- Primary Shades -->
-    <color name="primaryColor">#FF6464</color>
-    <color name="primaryColorDark">#FF6464</color>
+    <color name="primaryColor">#f26477</color>
+    <color name="primaryColorDark">#ff3355</color>
 
     <!-- Secondary Shades -->
     <color name="secondaryColor">#646B9D</color>

@@ -34,7 +34,7 @@ class MoreFragment: BaseFragment<FragmentMoreBinding>() {
         binding.card1.setOnClickListener {
             startActivity(Intent(activity, ProfileActivity::class.java))
         }
-        binding.card3.setOnClickListener {
+        binding.card2.setOnClickListener {
             startActivity(Intent(activity, SettingsActivity::class.java))
         }
         return binding.root
