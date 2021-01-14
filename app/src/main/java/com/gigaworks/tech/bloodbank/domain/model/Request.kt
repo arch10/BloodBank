@@ -1,7 +1,10 @@
 package com.gigaworks.tech.bloodbank.domain.model
 
+import android.os.Parcelable
 import com.gigaworks.tech.bloodbank.network.model.RequestDto
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Request(
     val bloodType: String,
     val city: String,
@@ -17,7 +20,7 @@ data class Request(
     val phone: String? = null,
     val state: String,
     val updatedOn: Long? = null
-)
+) : Parcelable
 
 fun Request.toDto(): RequestDto {
     return RequestDto(

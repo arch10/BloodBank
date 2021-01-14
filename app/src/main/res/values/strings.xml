@@ -68,4 +68,6 @@
     <string name="discard_otp_title">Discard OTP verification ?</string>
     <string name="discard_otp_subtitle">Do you want to discard the OTP verification ?</string>
     <string name="my_requests">My Requests</string>
+    <string name="request_details">Request Details</string>
+    <string name="call">Call</string>
 </resources>

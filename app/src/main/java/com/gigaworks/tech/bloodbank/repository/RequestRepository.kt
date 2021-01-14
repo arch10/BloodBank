@@ -9,6 +9,7 @@ import com.gigaworks.tech.bloodbank.network.Resource
 import com.gigaworks.tech.bloodbank.network.model.toEntity
 import com.gigaworks.tech.bloodbank.network.safeApiCall
 import com.gigaworks.tech.bloodbank.network.service.RequestService
+import com.gigaworks.tech.bloodbank.util.printLogD
 import com.gigaworks.tech.bloodbank.util.printLogE
 import javax.inject.Inject
 
@@ -42,7 +43,7 @@ class RequestRepository @Inject constructor(
 
     suspend fun getMyRequest(token: String): Resource<List<Request>> {
         return when (val networkResponse =
-            safeApiCall { network.getMyRequests(token).requests.map { it.toEntity() } }) {
+            safeApiCall { network.getMyRequests(token).map { it.toEntity() } }) {
             is Resource.Success -> {
                 cache.insertRequest(*networkResponse.response.toTypedArray())
                 Resource.Success(networkResponse.response.map { it.toDomain() })

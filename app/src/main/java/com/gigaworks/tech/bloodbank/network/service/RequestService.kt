@@ -1,7 +1,6 @@
 package com.gigaworks.tech.bloodbank.network.service
 
 import com.gigaworks.tech.bloodbank.network.model.RequestDto
-import com.gigaworks.tech.bloodbank.network.response.RequestsResponse
 import retrofit2.http.*
 
 interface RequestService {
@@ -15,12 +14,12 @@ interface RequestService {
     @GET("request")
     suspend fun getMyRequests(
         @Header("Authorization") token: String
-    ) : RequestsResponse
+    ) : List<RequestDto>
 
     @GET("request/{bloodType}")
     suspend fun getRequestByBloodType(
         @Header("Authorization") token: String,
         @Path("bloodType") bloodType: String
-    ) : RequestsResponse
+    ) : List<RequestDto>
 
 }

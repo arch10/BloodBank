@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.gigaworks.tech.bloodbank.R
 import com.gigaworks.tech.bloodbank.databinding.FragmentMoreBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseFragment
+import com.gigaworks.tech.bloodbank.ui.myrequests.MyRequests
 import com.gigaworks.tech.bloodbank.ui.profile.ProfileActivity
 import com.gigaworks.tech.bloodbank.ui.settings.SettingsActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -31,11 +32,11 @@ class MoreFragment: BaseFragment<FragmentMoreBinding>() {
         binding.card1.setOnClickListener {
             startActivity(Intent(activity, ProfileActivity::class.java))
         }
-        binding.card1.setOnClickListener {
-            startActivity(Intent(activity, ProfileActivity::class.java))
-        }
         binding.card2.setOnClickListener {
             startActivity(Intent(activity, SettingsActivity::class.java))
+        }
+        binding.card3.setOnClickListener {
+            startActivity(Intent(activity, MyRequests::class.java))
         }
         return binding.root
     }

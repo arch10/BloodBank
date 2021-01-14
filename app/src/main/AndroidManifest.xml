@@ -5,6 +5,12 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+        </intent>
+    </queries>
+
     <application
         android:name=".ui.MainApplication"
         android:allowBackup="true"
@@ -28,6 +34,10 @@
         <activity android:name=".ui.settings.SettingsActivity"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.newrequest.NewRequestActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.myrequests.MyRequests"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.requestdetail.RequestDetails"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.splash.SplashActivity"
             android:theme="@style/ColdStart">
