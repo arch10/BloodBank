@@ -15,8 +15,9 @@ import com.gigaworks.tech.bloodbank.databinding.ActivityHomeBinding
 import com.gigaworks.tech.bloodbank.ui.base.BaseActivity
 import com.gigaworks.tech.bloodbank.ui.newrequest.NewRequestActivity
 import com.gigaworks.tech.bloodbank.ui.profile.ProfileActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

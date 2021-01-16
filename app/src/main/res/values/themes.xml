@@ -2,8 +2,8 @@
     <!-- Cold start theme -->
     <style name="ColdStart" parent="Theme.BloodBank">
         <item name="android:windowBackground">@drawable/bg_splash</item>
-        <item name="android:statusBarColor">?attr/colorSurface</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">?attr/isLightTheme</item>
+        <item name="android:statusBarColor">#FF3355</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
     </style>
 
     <!-- Base application theme. -->

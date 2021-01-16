@@ -9,7 +9,6 @@ import com.gigaworks.tech.bloodbank.network.Resource
 import com.gigaworks.tech.bloodbank.network.model.toEntity
 import com.gigaworks.tech.bloodbank.network.safeApiCall
 import com.gigaworks.tech.bloodbank.network.service.RequestService
-import com.gigaworks.tech.bloodbank.util.printLogD
 import com.gigaworks.tech.bloodbank.util.printLogE
 import javax.inject.Inject
 
@@ -59,6 +58,10 @@ class RequestRepository @Inject constructor(
                 safeCacheCall { cache.getRequests().map { it.toDomain() } }
             }
         }
+    }
+
+    suspend fun getRequests(token: String, bloodType: String): Resource<List<Request>> {
+        return safeApiCall { network.getRequestByBloodType(token, bloodType).map { it.toEntity().toDomain() } }
     }
 
     suspend fun removeLocalCache() {
